@@ -64,9 +64,43 @@ const conteudos = [
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#f4f4f2] text-[#022b34]">
-      <header className="mx-auto flex w-full max-w-[1600px] items-center justify-between px-8 py-5 md:px-16 lg:px-20">
-        <div className="text-2xl font-bold tracking-tight">Axiom Labs</div>
-        <nav className="flex items-center gap-6 text-sm font-medium">
+      <header className="mx-auto flex w-full max-w-[1600px] items-center justify-between px-4 py-4 sm:px-8 md:px-16 lg:px-20">
+        <div className="text-xl font-bold tracking-tight sm:text-2xl">Axiom Labs</div>
+
+        <details className="relative sm:hidden">
+          <summary className="list-none rounded-lg border border-[#022b34]/20 px-3 py-2 text-sm font-semibold text-[#032a33]">
+            Menu
+          </summary>
+          <nav className="absolute right-0 z-20 mt-2 min-w-44 rounded-xl border border-[#022b34]/10 bg-white p-3 shadow-md">
+            <ul className="space-y-2 text-sm font-medium text-[#032a33]">
+              <li>
+                <Link href="/" className="block rounded-md px-2 py-1 hover:bg-[#f4f4f2]">
+                  Tratamentos
+                </Link>
+              </li>
+              <li>
+                <Link href="/" className="block rounded-md px-2 py-1 hover:bg-[#f4f4f2]">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link href="/" className="block rounded-md px-2 py-1 hover:bg-[#f4f4f2]">
+                  Quem Somos
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/auth"
+                  className="mt-1 block rounded-md border border-[#022b34]/20 px-2 py-1 text-center transition hover:bg-[#022b34] hover:text-white"
+                >
+                  Entrar
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </details>
+
+        <nav className="hidden items-center gap-6 text-sm font-medium sm:flex">
           <Link href="/" className="hover:opacity-75">
             Tratamentos
           </Link>
@@ -85,25 +119,25 @@ export default function Home() {
         </nav>
       </header>
 
-      <section className="mx-auto grid w-full max-w-[1600px] items-center gap-10 px-8 pb-16 pt-2 md:grid-cols-[1fr_1.12fr] md:px-16 lg:px-20">
+      <section className="mx-auto grid w-full max-w-[1600px] items-center gap-8 px-4 pb-12 pt-2 sm:px-8 sm:pb-16 md:grid-cols-[1fr_1.12fr] md:px-16 lg:px-20">
         <div className="space-y-6">
-          <h1 className="max-w-xl text-6xl font-bold leading-[1.02] tracking-tight">
+          <h1 className="max-w-xl text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
             Saúde cognitiva do jeito que você precisa.
           </h1>
-          <p className="max-w-xl text-lg leading-relaxed text-[#234b53]">
+          <p className="max-w-xl text-base leading-relaxed text-[#234b53] sm:text-lg">
             Sem filas e sem burocracia. Apenas suplementação nootrópica com
             abordagem baseada em ciência, entregue na sua porta e com triagem
             para maior segurança.
           </p>
           <Link
             href="/questionario"
-            className="inline-flex rounded-lg bg-[#fb8d7f] px-10 py-3 text-sm font-semibold text-[#032a33] transition hover:brightness-95"
+            className="inline-flex w-full justify-center rounded-lg bg-[#fb8d7f] px-8 py-3 text-sm font-semibold text-[#032a33] transition hover:brightness-95 sm:w-auto sm:px-10"
           >
             Começar agora
           </Link>
         </div>
 
-        <div className="relative h-[520px] w-full overflow-hidden bg-[#e5e3df]">
+        <div className="relative h-[300px] w-full overflow-hidden bg-[#e5e3df] sm:h-[420px] md:h-[520px]">
           <Image
             src="/hero-manual.png"
             alt="Homem sorrindo representando bem-estar e confiança."
@@ -114,7 +148,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto grid w-full max-w-[1600px] gap-4 px-8 pb-18 md:grid-cols-4 md:px-16 lg:px-20">
+      <section className="mx-auto grid w-full max-w-[1600px] gap-4 px-4 pb-14 sm:px-8 md:grid-cols-4 md:px-16 lg:px-20">
         {destaques.map((item) => (
           <article key={item.titulo} className="rounded-xl bg-white p-5 shadow-sm">
             <h3 className="text-base font-semibold">{item.titulo}</h3>
@@ -123,14 +157,14 @@ export default function Home() {
         ))}
       </section>
 
-      <section className="mx-auto w-full max-w-[1600px] px-8 pb-16 md:px-16 lg:px-20">
-        <h2 className="text-4xl font-bold tracking-tight">
+      <section className="mx-auto w-full max-w-[1600px] px-4 pb-12 sm:px-8 sm:pb-16 md:px-16 lg:px-20">
+        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
           O jeito mais prático de cuidar da performance mental
         </h2>
         <div className="mt-8 grid gap-4 md:grid-cols-3">
           {etapas.map((etapa) => (
-            <article key={etapa.titulo} className="rounded-2xl bg-white p-7 shadow-sm">
-              <h3 className="text-2xl font-semibold">{etapa.titulo}</h3>
+            <article key={etapa.titulo} className="rounded-2xl bg-white p-6 shadow-sm sm:p-7">
+              <h3 className="text-xl font-semibold sm:text-2xl">{etapa.titulo}</h3>
               <p className="mt-3 text-sm leading-relaxed text-[#3b5f66]">
                 {etapa.texto}
               </p>
@@ -140,18 +174,18 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-[1600px] px-8 pb-16 md:px-16 lg:px-20">
+      <section className="mx-auto w-full max-w-[1600px] px-4 pb-12 sm:px-8 sm:pb-16 md:px-16 lg:px-20">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#3b5f66]">
           Tratamentos
         </p>
-        <h2 className="mt-2 text-4xl font-bold tracking-tight">
+        <h2 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
           Protocolos baseados em evidência e objetivos reais
         </h2>
         <div className="mt-8 grid gap-5 md:grid-cols-2">
           {produtos.map((produto) => (
-            <article key={produto.nome} className="rounded-2xl bg-white p-8 shadow-sm">
+            <article key={produto.nome} className="rounded-2xl bg-white p-6 shadow-sm sm:p-8">
               <div className="h-36 rounded-xl bg-[#e8eceb]" />
-              <h3 className="mt-6 text-3xl font-bold">{produto.nome}</h3>
+              <h3 className="mt-6 text-2xl font-bold sm:text-3xl">{produto.nome}</h3>
               <p className="mt-3 text-sm text-[#3b5f66]">{produto.descricao}</p>
               <Link
                 href="/questionario"
@@ -164,15 +198,15 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-[1600px] px-8 pb-14 md:px-16 lg:px-20">
+      <section className="mx-auto w-full max-w-[1600px] px-4 pb-12 sm:px-8 sm:pb-14 md:px-16 lg:px-20">
         <div className="rounded-xl border border-[#022b34]/10 bg-white px-6 py-5 text-sm text-[#32565d]">
           Aprovado por especialistas em saúde integrativa e farmacologia clínica.
         </div>
       </section>
 
-      <section className="bg-[#ececeb] py-14">
-        <div className="mx-auto w-full max-w-[1600px] px-8 md:px-16 lg:px-20">
-          <h2 className="text-4xl font-bold tracking-tight">O que nossos clientes dizem</h2>
+      <section className="bg-[#ececeb] py-12 sm:py-14">
+        <div className="mx-auto w-full max-w-[1600px] px-4 sm:px-8 md:px-16 lg:px-20">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">O que nossos clientes dizem</h2>
           <div className="mt-7 grid gap-4 md:grid-cols-3">
             {depoimentos.map((texto) => (
               <article key={texto} className="rounded-2xl bg-white p-8 text-center shadow-sm">
@@ -183,11 +217,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-[1600px] px-8 pb-16 pt-16 md:px-16 lg:px-20">
+      <section className="mx-auto w-full max-w-[1600px] px-4 pb-12 pt-12 sm:px-8 sm:pb-16 sm:pt-16 md:px-16 lg:px-20">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#3b5f66]">
           Sobre a Axiom Labs
         </p>
-        <h2 className="mt-2 text-4xl font-bold tracking-tight">
+        <h2 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
           Cuidado completo e descomplicado
         </h2>
         <p className="mt-4 max-w-4xl text-sm leading-relaxed text-[#3b5f66]">
@@ -197,7 +231,7 @@ export default function Home() {
         <div className="mt-8 grid gap-4 md:grid-cols-[1.2fr_1fr]">
           <article className="rounded-2xl bg-white p-6 shadow-sm">
             <div className="h-44 rounded-xl bg-[#dce5e3]" />
-            <h3 className="mt-4 text-2xl font-semibold">Plano Performance</h3>
+            <h3 className="mt-4 text-xl font-semibold sm:text-2xl">Plano Performance</h3>
             <ul className="mt-4 space-y-2 text-sm text-[#32565d]">
               <li>Triagem inicial com análise de contraindicação</li>
               <li>Fórmula manipulada sob demanda</li>
@@ -227,8 +261,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-[1600px] px-8 pb-16 md:px-16 lg:px-20">
-        <h2 className="max-w-4xl text-4xl font-bold tracking-tight">
+      <section className="mx-auto w-full max-w-[1600px] px-4 pb-12 sm:px-8 sm:pb-16 md:px-16 lg:px-20">
+        <h2 className="max-w-4xl text-3xl font-bold tracking-tight sm:text-4xl">
           Conteúdo prático sobre foco, energia e saúde cognitiva
         </h2>
         <div className="mt-8 grid gap-4 md:grid-cols-4">
@@ -246,9 +280,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-[1600px] px-8 pb-16 md:px-16 lg:px-20">
-        <div className="rounded-2xl bg-[#ececea] p-8 md:p-10">
-          <h3 className="text-3xl font-bold">Conheça as farmácias credenciadas</h3>
+      <section className="mx-auto w-full max-w-[1600px] px-4 pb-12 sm:px-8 sm:pb-16 md:px-16 lg:px-20">
+        <div className="rounded-2xl bg-[#ececea] p-6 sm:p-8 md:p-10">
+          <h3 className="text-2xl font-bold sm:text-3xl">Conheça as farmácias credenciadas</h3>
           <p className="mt-3 max-w-4xl text-sm text-[#3b5f66]">
             A Axiom Labs não é farmácia. Todos os produtos são manipulados por
             parceiros credenciados em conformidade com as normas sanitárias vigentes.
@@ -262,7 +296,7 @@ export default function Home() {
       </section>
 
       <footer className="bg-[#013843] text-[#def4ef]">
-        <div className="mx-auto grid w-full max-w-[1600px] gap-8 px-8 py-12 md:grid-cols-4 md:px-16 lg:px-20">
+        <div className="mx-auto grid w-full max-w-[1600px] gap-8 px-4 py-10 sm:px-8 sm:py-12 md:grid-cols-4 md:px-16 lg:px-20">
           <div>
             <h3 className="text-lg font-semibold">Ficou alguma dúvida?</h3>
             <p className="mt-2 text-sm text-[#9cc2bc]">
@@ -297,7 +331,7 @@ export default function Home() {
             <p className="mt-2 text-sm">Seg a Sex, das 9h às 18h</p>
           </div>
         </div>
-        <div className="mx-auto w-full max-w-[1600px] border-t border-[#1b5761] px-8 py-6 text-xs text-[#9cc2bc] md:px-16 lg:px-20">
+        <div className="mx-auto w-full max-w-[1600px] border-t border-[#1b5761] px-4 py-6 text-xs text-[#9cc2bc] sm:px-8 md:px-16 lg:px-20">
           Copyright 2026 Axiom Labs. Todos os direitos reservados.
         </div>
       </footer>

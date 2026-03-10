@@ -80,13 +80,13 @@ export default function AuthPage() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-[#f4f4f2] px-4">
-      <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-sm">
+    <main className="flex min-h-screen items-center justify-center bg-[#f4f4f2] px-3 py-6 sm:px-4">
+      <div className="w-full max-w-md rounded-2xl bg-white p-5 shadow-sm sm:p-8">
         <div className="mb-6">
           <Link href="/" className="text-sm text-[#3b5f66] hover:underline">
             Voltar para home
           </Link>
-          <h1 className="mt-3 text-2xl font-bold text-[#032a33]">{titulo}</h1>
+          <h1 className="mt-3 text-xl font-bold text-[#032a33] sm:text-2xl">{titulo}</h1>
           <p className="mt-2 text-sm text-[#3b5f66]">
             {modo === "login"
               ? "Acesse sua conta para continuar sua jornada."
@@ -151,7 +151,7 @@ export default function AuthPage() {
           onClick={() =>
             setModo((atual) => (atual === "login" ? "cadastro" : "login"))
           }
-          className="mt-4 text-sm text-[#32565d] hover:underline"
+          className="mt-5 text-sm text-[#32565d] hover:underline"
         >
           {modo === "login"
             ? "Não tem conta? Cadastre-se"

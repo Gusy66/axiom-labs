@@ -294,8 +294,8 @@ export default function QuestionarioPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#f4f4f2] px-4 py-10">
-      <div className="mx-auto w-full max-w-4xl rounded-2xl bg-white p-8 shadow-sm">
+    <main className="min-h-screen bg-[#f4f4f2] px-3 py-6 sm:px-4 sm:py-10">
+      <div className="mx-auto w-full max-w-4xl rounded-2xl bg-white p-5 shadow-sm sm:p-8">
         <Link href="/" className="text-sm text-[#3b5f66] hover:underline">
           Voltar para home
         </Link>
@@ -316,11 +316,11 @@ export default function QuestionarioPage() {
         )}
 
         {stage === "questions" && perguntaAtual && (
-          <section key={`pergunta-${perguntaAtual.id}`} className="mt-8 animate-[fadeIn_.35s_ease]">
+          <section key={`pergunta-${perguntaAtual.id}`} className="mt-7 animate-[fadeIn_.35s_ease] sm:mt-8">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#3b5f66]">
               Tela {indicePergunta + 1}
             </p>
-            <h1 className="mt-2 text-3xl font-bold text-[#032a33]">{perguntaAtual.titulo}</h1>
+            <h1 className="mt-2 text-2xl font-bold text-[#032a33] sm:text-3xl">{perguntaAtual.titulo}</h1>
             {perguntaAtual.descricao && (
               <p className="mt-2 text-sm text-[#3b5f66]">{perguntaAtual.descricao}</p>
             )}
@@ -347,19 +347,19 @@ export default function QuestionarioPage() {
 
             {erro && <p className="mt-4 text-sm text-[#b5473a]">{erro}</p>}
 
-            <div className="mt-8 flex items-center justify-between">
+            <div className="mt-8 flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
               <button
                 type="button"
                 onClick={voltar}
                 disabled={indicePergunta === 0}
-                className="rounded-lg border border-[#032a33]/20 px-4 py-2 text-sm font-semibold text-[#32565d] disabled:cursor-not-allowed disabled:opacity-40"
+                className="w-full rounded-lg border border-[#032a33]/20 px-4 py-2 text-sm font-semibold text-[#32565d] disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto"
               >
                 Voltar
               </button>
               <button
                 type="button"
                 onClick={avancarPergunta}
-                className="rounded-lg bg-[#fb8d7f] px-6 py-2.5 text-sm font-semibold text-[#032a33] transition hover:brightness-95"
+                className="w-full rounded-lg bg-[#fb8d7f] px-6 py-2.5 text-sm font-semibold text-[#032a33] transition hover:brightness-95 sm:w-auto"
               >
                 Continuar
               </button>
@@ -372,7 +372,7 @@ export default function QuestionarioPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#3b5f66]">
               Tela 7
             </p>
-            <h1 className="mt-2 text-3xl font-bold text-[#032a33]">
+            <h1 className="mt-2 text-2xl font-bold text-[#032a33] sm:text-3xl">
               Estamos processando seu perfil
             </h1>
             <p className="mt-2 text-sm text-[#3b5f66]">
@@ -403,17 +403,17 @@ export default function QuestionarioPage() {
 
               {erro && <p className="text-sm text-[#b5473a]">{erro}</p>}
 
-              <div className="flex items-center justify-between pt-2">
+              <div className="flex flex-col-reverse gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
                 <button
                   type="button"
                   onClick={voltar}
-                  className="rounded-lg border border-[#032a33]/20 px-4 py-2 text-sm font-semibold text-[#32565d]"
+                  className="w-full rounded-lg border border-[#032a33]/20 px-4 py-2 text-sm font-semibold text-[#32565d] sm:w-auto"
                 >
                   Voltar
                 </button>
                 <button
                   type="submit"
-                  className="rounded-lg bg-[#fb8d7f] px-6 py-2.5 text-sm font-semibold text-[#032a33] transition hover:brightness-95"
+                  className="w-full rounded-lg bg-[#fb8d7f] px-6 py-2.5 text-sm font-semibold text-[#032a33] transition hover:brightness-95 sm:w-auto"
                 >
                   Ver meu protocolo agora
                 </button>
@@ -423,32 +423,32 @@ export default function QuestionarioPage() {
         )}
 
         {stage === "loading" && (
-          <section className="mt-10 rounded-2xl border border-[#032a33]/10 bg-[#f7f8f7] p-8 text-center animate-[fadeIn_.35s_ease]">
-            <h2 className="text-2xl font-bold text-[#032a33]">Aguarde um instante...</h2>
+          <section className="mt-8 rounded-2xl border border-[#032a33]/10 bg-[#f7f8f7] p-6 text-center animate-[fadeIn_.35s_ease] sm:mt-10 sm:p-8">
+            <h2 className="text-xl font-bold text-[#032a33] sm:text-2xl">Aguarde um instante...</h2>
             <p className="mt-3 text-sm text-[#3b5f66]">{mensagemLoading}</p>
-            <div className="mx-auto mt-6 h-2 w-56 overflow-hidden rounded-full bg-[#dfe6e4]">
+            <div className="mx-auto mt-6 h-2 w-full max-w-56 overflow-hidden rounded-full bg-[#dfe6e4]">
               <div className="h-full w-1/2 animate-pulse rounded-full bg-[#fb8d7f]" />
             </div>
           </section>
         )}
 
         {stage === "blocked" && (
-          <section className="mt-8 rounded-xl border border-red-200 bg-red-50 p-6 animate-[fadeIn_.35s_ease]">
-            <h2 className="text-2xl font-bold text-[#032a33]">{BLOQUEIO_CLINICO.titulo}</h2>
+          <section className="mt-8 rounded-xl border border-red-200 bg-red-50 p-5 animate-[fadeIn_.35s_ease] sm:p-6">
+            <h2 className="text-xl font-bold text-[#032a33] sm:text-2xl">{BLOQUEIO_CLINICO.titulo}</h2>
             <p className="mt-3 text-sm leading-relaxed text-[#3b5f66]">{BLOQUEIO_CLINICO.texto}</p>
           </section>
         )}
 
         {stage === "result" && (
           <section className="mt-8 space-y-5 animate-[fadeIn_.35s_ease]">
-            <div className="rounded-xl border border-[#032a33]/10 bg-[#f7faf9] p-6">
+            <div className="rounded-xl border border-[#032a33]/10 bg-[#f7faf9] p-5 sm:p-6">
               <p className="text-sm text-[#3b5f66]">Olá, {nome}.</p>
-              <h2 className="mt-1 text-3xl font-bold text-[#032a33]">{resultado.diagnostico}</h2>
+              <h2 className="mt-1 text-2xl font-bold text-[#032a33] sm:text-3xl">{resultado.diagnostico}</h2>
               <p className="mt-3 text-sm leading-relaxed text-[#32565d]">{resultado.explicacao}</p>
             </div>
 
-            <div className="rounded-xl bg-white p-6 shadow-sm">
-              <h3 className="text-2xl font-bold text-[#032a33]">
+            <div className="rounded-xl bg-white p-5 shadow-sm sm:p-6">
+              <h3 className="text-xl font-bold text-[#032a33] sm:text-2xl">
                 Protocolo 24h para perfil {resultado.perfil}
               </h3>
               <div className="mt-5 space-y-4">
@@ -463,15 +463,15 @@ export default function QuestionarioPage() {
               </div>
             </div>
 
-            <div className="rounded-xl bg-[#032a33] p-6 text-white">
+            <div className="rounded-xl bg-[#032a33] p-5 text-white sm:p-6">
               <p className="text-sm text-[#b8d5d9]">Preço avulso estimado do protocolo: R$ 498/mês</p>
-              <h3 className="mt-2 text-3xl font-bold">Assinatura Axiom: R$ 297/mês</h3>
+              <h3 className="mt-2 text-2xl font-bold sm:text-3xl">Assinatura Axiom: R$ 297/mês</h3>
               <p className="mt-2 text-sm text-[#b8d5d9]">
                 Condição exclusiva para quem concluiu a avaliação.
               </p>
               <button
                 type="button"
-                className="mt-5 rounded-lg bg-[#fb8d7f] px-6 py-2.5 text-sm font-semibold text-[#032a33] transition hover:brightness-95"
+                className="mt-5 w-full rounded-lg bg-[#fb8d7f] px-6 py-2.5 text-sm font-semibold text-[#032a33] transition hover:brightness-95 sm:w-auto"
               >
                 Quero iniciar meu protocolo
               </button>
