@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Axiom Labs | Nootrópicos manipulados",
+  title: "NeuroDrive | Performance cognitiva de alta precisao",
   description:
-    "E-commerce de produtos manipulados com foco em performance cognitiva e segurança clínica.",
+    "Protocolos nootropicos personalizados para foco, energia mental e recuperacao cognitiva.",
 };
 
 export default function RootLayout({
