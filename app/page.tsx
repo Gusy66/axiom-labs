@@ -6,6 +6,12 @@ import { useEffect, useState } from "react";
 
 const navItems = ["Shop Now", "About NeuroDrive", "Science", "Reviews"];
 
+type SessionUser = {
+  id: string;
+  name: string;
+  email: string;
+};
+
 const trustBadges = [
   {
     titulo: "Formulas clinicas",
@@ -138,6 +144,8 @@ function UserIcon({ className }: { className?: string }) {
 
 export default function Home() {
   const [activeSlide, setActiveSlide] = useState(0);
+  const [sessionUser, setSessionUser] = useState<SessionUser | null>(null);
+  const [isSessionLoading, setIsSessionLoading] = useState(true);
 
   useEffect(() => {
     const interval = window.setInterval(() => {
@@ -146,6 +154,54 @@ export default function Home() {
 
     return () => window.clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    let ativo = true;
+
+    async function carregarSessao() {
+      try {
+        const response = await fetch("/api/auth/session", {
+          method: "GET",
+          cache: "no-store",
+        });
+
+        if (!response.ok) {
+          if (ativo) setSessionUser(null);
+          return;
+        }
+
+        const data = (await response.json()) as { user: SessionUser | null };
+
+        if (ativo) {
+          setSessionUser(data.user);
+        }
+      } catch {
+        if (ativo) {
+          setSessionUser(null);
+        }
+      } finally {
+        if (ativo) {
+          setIsSessionLoading(false);
+        }
+      }
+    }
+
+    void carregarSessao();
+
+    return () => {
+      ativo = false;
+    };
+  }, []);
+
+  async function handleLogout() {
+    try {
+      await fetch("/api/auth/logout", {
+        method: "POST",
+      });
+    } finally {
+      setSessionUser(null);
+    }
+  }
 
   return (
     <main className="min-h-screen bg-[#020712] pb-24 text-[#f6fbff] md:pb-0">
@@ -185,6 +241,22 @@ export default function Home() {
                     </Link>
                   </li>
                 ))}
+                <li>
+                  <Link href="/auth" className="block rounded-md px-2 py-1.5 hover:bg-white/10">
+                    {sessionUser ? "Minha conta" : "Entrar"}
+                  </Link>
+                </li>
+                {sessionUser && (
+                  <li>
+                    <button
+                      type="button"
+                      onClick={handleLogout}
+                      className="block w-full rounded-md px-2 py-1.5 text-left text-white/80 hover:bg-white/10"
+                    >
+                      Sair
+                    </button>
+                  </li>
+                )}
               </ul>
             </nav>
           </details>
@@ -213,17 +285,90 @@ export default function Home() {
             >
               <SearchIcon className="h-4 w-4" />
             </button>
-            <button
-              type="button"
-              aria-label="Conta"
-              className="rounded-full border border-white/25 p-2 transition hover:border-[#8dedff]/70 hover:text-[#8dedff]"
-            >
-              <UserIcon className="h-4 w-4" />
-            </button>
+            {isSessionLoading ? (
+              <div className="h-10 w-10 rounded-full border border-white/20 bg-white/[0.04]" />
+            ) : sessionUser ? (
+              <details className="relative">
+                <summary className="list-none rounded-full border border-white/25 p-2 transition hover:border-[#8dedff]/70 hover:text-[#8dedff]">
+                  <UserIcon className="h-4 w-4" />
+                </summary>
+                <div className="absolute right-0 z-30 mt-3 w-72 rounded-2xl border border-white/15 bg-[#07111d]/95 p-4 shadow-2xl">
+                  <p className="text-xs uppercase tracking-[0.18em] text-[#8cefff]">
+                    Sessao ativa
+                  </p>
+                  <p className="mt-3 text-base font-semibold text-white">{sessionUser.name}</p>
+                  <p className="mt-1 text-sm text-white/65">{sessionUser.email}</p>
+                  <div className="mt-4 flex flex-col gap-2">
+                    <Link
+                      href="/auth"
+                      className="rounded-xl border border-white/12 bg-white/[0.03] px-4 py-2 text-sm font-medium text-white/85 transition hover:border-[#8dedff]/60"
+                    >
+                      Minha conta
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={handleLogout}
+                      className="rounded-xl bg-[#00d8ff] px-4 py-2 text-sm font-semibold text-[#04111c] transition hover:brightness-110"
+                    >
+                      Sair
+                    </button>
+                  </div>
+                </div>
+              </details>
+            ) : (
+              <Link
+                href="/auth"
+                aria-label="Entrar"
+                className="rounded-full border border-white/25 p-2 transition hover:border-[#8dedff]/70 hover:text-[#8dedff]"
+              >
+                <UserIcon className="h-4 w-4" />
+              </Link>
+            )}
           </div>
         </header>
 
-        <section className="relative z-10 mx-auto flex min-h-[560px] w-full max-w-[1440px] items-end px-4 pb-14 pt-8 sm:min-h-[620px] sm:px-6 sm:pb-16 md:min-h-[680px] lg:min-h-[760px] lg:px-8 lg:pb-20 xl:min-h-[820px] 2xl:max-w-[1560px] 2xl:px-12 2xl:min-h-[880px]">
+        <section className="relative z-10 mx-auto flex min-h-[620px] w-full max-w-[1440px] items-end px-4 pb-12 pt-6 md:hidden">
+          <div className="w-full">
+            <div className="max-w-[18rem]">
+              <p className="text-sm font-light tracking-wide text-white/80">
+                {heroSlides[activeSlide].eyebrow}
+              </p>
+              <h1 className="mt-4 max-w-[8ch] text-[3rem] font-semibold leading-[0.94] tracking-[-0.06em] text-white">
+                {heroSlides[activeSlide].titulo}
+              </h1>
+              <p className="mt-4 max-w-[16rem] text-base leading-[1.25] text-white/82">
+                {heroSlides[activeSlide].descricao}
+              </p>
+            </div>
+
+            <div className="mt-6 flex items-center gap-3">
+              <Link
+                href="/questionario"
+                className="inline-flex rounded-full bg-[#00d8ff] px-5 py-3 text-xs font-semibold uppercase tracking-wide text-[#04111c] shadow-[0_0_24px_rgba(0,216,255,0.3)]"
+              >
+                Shop Now
+              </Link>
+            </div>
+
+            <div className="mt-5 flex items-center gap-2">
+              {heroSlides.map((slide, index) => (
+                <button
+                  key={slide.titulo}
+                  type="button"
+                  aria-label={`Ir para slide ${index + 1}`}
+                  onClick={() => setActiveSlide(index)}
+                  className={
+                    index === activeSlide
+                      ? "h-2.5 w-7 rounded-full bg-[#00d8ff] shadow-[0_0_16px_rgba(0,216,255,0.65)]"
+                      : "h-2.5 w-2.5 rounded-full bg-white/35 transition hover:bg-white/55"
+                  }
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="relative z-10 mx-auto hidden min-h-[560px] w-full max-w-[1440px] items-end px-4 pb-14 pt-8 sm:min-h-[620px] sm:px-6 sm:pb-16 md:flex md:min-h-[680px] lg:min-h-[760px] lg:px-8 lg:pb-20 xl:min-h-[820px] 2xl:max-w-[1560px] 2xl:px-12 2xl:min-h-[880px]">
           <div className="max-w-[min(92vw,33rem)] sm:max-w-[26rem] md:max-w-[27rem] lg:max-w-[31rem] xl:max-w-[34rem]">
             <div className="grid min-h-[25rem] sm:min-h-[29rem] md:min-h-[35rem] lg:min-h-[31rem] xl:min-h-[27rem]">
               {heroSlides.map((slide, index) => (
@@ -296,7 +441,106 @@ export default function Home() {
         </section>
       </div>
 
-      <section className="mx-auto w-full max-w-[1440px] px-4 py-10 sm:px-6 lg:px-8 2xl:max-w-[1560px] 2xl:px-12">
+      <section className="mx-auto px-4 py-8 md:hidden">
+        <div className="rounded-[2rem] border border-white/10 bg-[#060b15] p-5 shadow-[0_10px_40px_rgba(0,0,0,0.25)]">
+          <h2 className="max-w-[10ch] text-4xl font-semibold leading-[1.02] tracking-[-0.05em] text-white">
+            Beneficios-chave
+          </h2>
+          <p className="mt-3 text-sm text-white/72">
+            Informacoes essenciais sobre performance, clareza mental e protocolos clinicos.
+          </p>
+
+          <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-[#090f1b] p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#76e7ff]">
+              Protocolo em foco
+            </p>
+            <h3 className="mt-3 text-2xl font-semibold text-white">
+              {heroSlides[activeSlide].eyebrow}
+            </h3>
+            <p className="mt-2 text-sm leading-relaxed text-white/72">
+              {heroSlides[activeSlide].descricao}
+            </p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link
+                href="/questionario"
+                className="inline-flex rounded-xl bg-[#00d8ff] px-4 py-3 text-sm font-semibold text-[#04111c]"
+              >
+                Add to cart
+              </Link>
+              <Link
+                href="/questionario"
+                className="inline-flex rounded-xl border border-[#36dfff]/70 px-4 py-3 text-sm font-semibold text-white"
+              >
+                Subscribe
+              </Link>
+              <Link
+                href="/questionario"
+                className="inline-flex rounded-xl bg-white px-4 py-3 text-sm font-semibold text-[#04111c]"
+              >
+                Learn more
+              </Link>
+            </div>
+          </div>
+
+          <div className="mt-6">
+            <div className="h-2 rounded-full bg-white/10">
+              <div className="h-2 w-1/2 rounded-full bg-[#00d8ff]" />
+            </div>
+            <div className="mt-3 grid grid-cols-3 gap-3 text-sm text-white/88">
+              <p>#007AFF</p>
+              <p>#00F0F0</p>
+              <p>#021212</p>
+            </div>
+          </div>
+
+          <div className="mt-6 flex items-center justify-center gap-2">
+            {heroSlides.map((slide, index) => (
+              <span
+                key={slide.eyebrow}
+                className={
+                  index === activeSlide
+                    ? "h-2.5 w-6 rounded-full bg-[#00d8ff]"
+                    : "h-2.5 w-2.5 rounded-full bg-white/30"
+                }
+              />
+            ))}
+          </div>
+
+          <h3 className="mt-7 text-2xl font-semibold text-white">Light benefits</h3>
+          <div className="mt-4 grid grid-cols-2 gap-4">
+            {trustBadges.slice(0, 2).map((item) => (
+              <article
+                key={item.titulo}
+                className="rounded-[1.4rem] border border-white/10 bg-[#090f1b] p-4"
+              >
+                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-[#36dfff]/30 bg-[radial-gradient(circle,rgba(0,216,255,0.2),transparent_70%)] text-xl text-[#7cecff]">
+                  {item.titulo.includes("Formulas") ? "Q" : "R"}
+                </div>
+                <h4 className="text-lg font-semibold text-white">{item.titulo}</h4>
+                <p className="mt-2 text-sm leading-relaxed text-white/68">{item.texto}</p>
+              </article>
+            ))}
+          </div>
+
+          <h3 className="mt-7 text-2xl font-semibold text-white">Detalhes e jornada</h3>
+          <div className="mt-4 space-y-3">
+            {passos.map((passo, index) => (
+              <article
+                key={passo.titulo}
+                className="rounded-[1.4rem] border border-white/10 bg-[#090f1b] p-4"
+              >
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#76e7ff]">
+                  Passo {index + 1}
+                </p>
+                <h4 className="mt-2 text-lg font-semibold text-white">{passo.titulo}</h4>
+                <p className="mt-2 text-sm leading-relaxed text-white/72">{passo.texto}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto hidden w-full max-w-[1440px] px-4 py-10 sm:px-6 md:block lg:px-8 2xl:max-w-[1560px] 2xl:px-12">
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
           {trustBadges.map((item) => (
             <article key={item.titulo} className="rounded-2xl border border-white/15 bg-white/[0.03] p-4 backdrop-blur">
@@ -307,7 +551,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-[1440px] px-4 pb-12 sm:px-6 md:pb-16 lg:px-8 2xl:max-w-[1560px] 2xl:px-12">
+      <section className="mx-auto hidden w-full max-w-[1440px] px-4 pb-12 sm:px-6 md:block md:pb-16 lg:px-8 2xl:max-w-[1560px] 2xl:px-12">
         <p className="text-xs uppercase tracking-[0.2em] text-[#74def2]">Como funciona</p>
         <h2 className="mt-3 max-w-3xl text-3xl font-semibold tracking-tight sm:text-4xl">
           Engenharia mental em 3 passos simples.
@@ -322,7 +566,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-[1440px] px-4 pb-12 sm:px-6 md:pb-16 lg:px-8 2xl:max-w-[1560px] 2xl:px-12">
+      <section className="mx-auto hidden w-full max-w-[1440px] px-4 pb-12 sm:px-6 md:block md:pb-16 lg:px-8 2xl:max-w-[1560px] 2xl:px-12">
         <p className="text-xs uppercase tracking-[0.2em] text-[#74def2]">Protocolos</p>
         <h2 className="mt-3 max-w-3xl text-3xl font-semibold tracking-tight sm:text-4xl">
           Protocolos baseados em neurociencia, personalizados para voce.
@@ -343,7 +587,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-[1440px] px-4 pb-12 sm:px-6 md:pb-16 lg:px-8 2xl:max-w-[1560px] 2xl:px-12">
+      <section className="mx-auto hidden w-full max-w-[1440px] px-4 pb-12 sm:px-6 md:block md:pb-16 lg:px-8 2xl:max-w-[1560px] 2xl:px-12">
         <h2 className="max-w-3xl text-3xl font-semibold tracking-tight sm:text-4xl">
           O que a elite corporativa diz sobre a NeuroDrive.
         </h2>
@@ -359,7 +603,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-[1440px] px-4 pb-16 sm:px-6 lg:px-8 2xl:max-w-[1560px] 2xl:px-12">
+      <section className="mx-auto hidden w-full max-w-[1440px] px-4 pb-16 sm:px-6 md:block lg:px-8 2xl:max-w-[1560px] 2xl:px-12">
         <div className="rounded-3xl border border-[#00d6ff]/40 bg-gradient-to-r from-[#071021] via-[#0b1931] to-[#071021] p-6 sm:p-8 md:p-10">
           <p className="text-xs uppercase tracking-[0.2em] text-[#7de6ff]">Fechamento</p>
           <h3 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
