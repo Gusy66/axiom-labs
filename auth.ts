@@ -28,10 +28,7 @@ const providers: NextAuthConfig["providers"] = [
         if (!name || password.length < 8) return null;
 
         const existingUser = await db.user.findUnique({ where: { email } });
-
-        if (existingUser?.passwordHash) {
-          return null;
-        }
+        if (existingUser?.passwordHash) return null;
 
         const passwordHash = await hash(password, 12);
 
@@ -67,7 +64,6 @@ const providers: NextAuthConfig["providers"] = [
       }
 
       const user = await db.user.findUnique({ where: { email } });
-
       if (!user?.passwordHash) return null;
 
       const validPassword = await compare(password, user.passwordHash);
@@ -99,19 +95,12 @@ export const authConfig = {
   },
   callbacks: {
     async jwt({ token, user }) {
-      if (user?.id) {
-        token.id = user.id;
-      }
-
+      if (user?.id) token.id = user.id;
       return token;
     },
     async session({ session, user, token }) {
       const userId = user?.id ?? String(token.id ?? "");
-
-      if (session.user) {
-        session.user.id = userId;
-      }
-
+      if (session.user) session.user.id = userId;
       return session;
     },
   },

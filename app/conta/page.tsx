@@ -7,10 +7,10 @@ import { QUIZ_SESSION_COOKIE } from "@/lib/questionnaire";
 
 const TITULOS_RESPOSTAS: Record<string, string> = {
   objetivo_principal: "Objetivo principal",
-  foco_atual: "Foco e concentracao",
+  foco_atual: "Foco e concentração",
   queda_energia: "Produtividade e energia",
   sono_mente: "Desligamento e sono",
-  experiencia_previa: "Experiencia previa",
+  experiencia_previa: "Experiência prévia",
   rotina: "Rotina e estilo de vida",
 };
 
@@ -59,25 +59,25 @@ export default async function ContaPage() {
   return (
     <main className="min-h-screen bg-[#020712] px-3 py-6 text-white sm:px-4">
       <div className="mx-auto w-full max-w-4xl rounded-[1.75rem] border border-white/10 bg-[linear-gradient(180deg,#08111f_0%,#050b15_100%)] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.35)] sm:p-8">
-        <h1 className="text-2xl font-bold sm:text-3xl">Area do usuario</h1>
+        <h1 className="text-2xl font-bold sm:text-3xl">Área do usuário</h1>
         <p className="mt-2 text-sm text-white/70">
-          Conta autenticada com sucesso. Aqui estao seus dados e o protocolo sugerido.
+          Conta autenticada com sucesso. Aqui estão seus dados e o protocolo sugerido.
         </p>
 
         <section className="mt-6 rounded-xl border border-white/10 bg-white/[0.03] p-5">
           <h2 className="text-lg font-semibold">Dados da conta</h2>
           <p className="mt-2 text-sm text-white/80">
-            <strong>Nome:</strong> {session.user.name ?? "Nao informado"}
+            <strong>Nome:</strong> {session.user.name ?? "Não informado"}
           </p>
           <p className="mt-1 text-sm text-white/80">
-            <strong>E-mail:</strong> {session.user.email ?? "Nao informado"}
+            <strong>E-mail:</strong> {session.user.email ?? "Não informado"}
           </p>
         </section>
 
         {submission ? (
           <>
             <section className="mt-5 rounded-xl border border-white/10 bg-white/[0.03] p-5">
-              <h2 className="text-lg font-semibold">Seu diagnostico</h2>
+              <h2 className="text-lg font-semibold">Seu diagnóstico</h2>
               <p className="mt-2 text-xl font-bold text-[#8cefff]">{submission.diagnostico}</p>
               <p className="mt-2 text-sm text-white/75">{submission.explicacao}</p>
             </section>
@@ -113,7 +113,7 @@ export default async function ContaPage() {
           <section className="mt-5 rounded-xl border border-[#ff8f7a]/30 bg-[#190c10] p-5">
             <h2 className="text-lg font-semibold">Sem protocolo salvo</h2>
             <p className="mt-2 text-sm text-white/75">
-              Ainda nao encontramos um resultado vinculado a sua conta.
+              Ainda não encontramos um resultado vinculado à sua conta.
             </p>
           </section>
         )}
@@ -121,7 +121,7 @@ export default async function ContaPage() {
         <section className="mt-5 rounded-xl border border-[#00d8ff]/25 bg-[linear-gradient(135deg,#07111d_0%,#0b1d31_100%)] p-5">
           <h2 className="text-lg font-semibold">Pagamento (em breve)</h2>
           <p className="mt-2 text-sm text-white/75">
-            Area reservada para assinatura, metodo de pagamento e gestao do plano.
+            Área reservada para assinatura, método de pagamento e gestão do plano.
           </p>
         </section>
       </div>

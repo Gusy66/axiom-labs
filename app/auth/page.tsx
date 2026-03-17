@@ -72,8 +72,8 @@ export default function AuthPage() {
       if (!result?.ok) {
         setMensagem(
           modo === "login"
-            ? "Credenciais invalidas. Verifique e-mail e senha."
-            : "Nao foi possivel criar sua conta. Tente outro e-mail.",
+            ? "Credenciais inválidas. Verifique e-mail e senha."
+            : "Não foi possível criar sua conta. Tente outro e-mail.",
         );
         return;
       }
@@ -81,7 +81,7 @@ export default function AuthPage() {
       router.push(callbackUrl);
       router.refresh();
     } catch {
-      setMensagem("Nao foi possivel concluir a autenticacao agora.");
+      setMensagem("Não foi possível concluir a autenticação agora.");
     } finally {
       setSubmetendo(false);
     }
@@ -95,7 +95,7 @@ export default function AuthPage() {
     return (
       <main className="flex min-h-screen items-center justify-center bg-[#020712] px-3 py-6 text-white sm:px-4">
         <div className="w-full max-w-md rounded-[1.75rem] border border-white/10 bg-[linear-gradient(180deg,#08111f_0%,#050b15_100%)] p-6 text-center shadow-[0_18px_60px_rgba(0,0,0,0.35)]">
-          <h1 className="text-xl font-bold sm:text-2xl">Validando sua sessao...</h1>
+          <h1 className="text-xl font-bold sm:text-2xl">Validando sua sessão...</h1>
           <div className="mx-auto mt-5 h-2 w-full max-w-56 overflow-hidden rounded-full bg-white/10">
             <div className="h-full w-1/2 animate-pulse rounded-full bg-[#00d8ff]" />
           </div>
@@ -115,7 +115,7 @@ export default function AuthPage() {
           <p className="mt-2 text-sm text-white/68">
             {modo === "login"
               ? "Acesse sua conta para continuar sua jornada."
-              : "Crie sua conta para comecar sua avaliacao nootropica."}
+              : "Crie sua conta para começar sua avaliação nootrópica."}
           </p>
         </div>
 
@@ -166,7 +166,7 @@ export default function AuthPage() {
               value={email}
               onChange={(event) => setEmail(event.target.value)}
               className="mt-1 w-full rounded-xl border border-white/12 bg-white/[0.03] px-3 py-2 text-white outline-none placeholder:text-white/35 focus:border-[#00d8ff] focus:ring-2 focus:ring-[#00d8ff]/35"
-              placeholder="voce@exemplo.com"
+              placeholder="você@exemplo.com"
             />
           </label>
 
@@ -209,8 +209,8 @@ export default function AuthPage() {
           className="mt-5 text-sm text-white/65 hover:text-[#8cefff] hover:underline"
         >
           {modo === "login"
-            ? "Nao tem conta? Cadastre-se"
-            : "Ja tem conta? Entrar"}
+            ? "Não tem conta? Cadastre-se"
+            : "Já tem conta? Entrar"}
         </button>
       </div>
     </main>

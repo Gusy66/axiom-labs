@@ -12,109 +12,193 @@ type SessionUser = {
   email: string;
 };
 
+type MarketingIconName =
+  | "neuro"
+  | "target"
+  | "bolt"
+  | "flow"
+  | "flask"
+  | "chart";
+
 const trustBadges = [
   {
-    titulo: "Formulas clinicas",
-    texto: "Autorizadas pela Anvisa",
+    titulo: "Foco profundo sem crash",
+    texto: "Mais clareza mental nas horas críticas da sua rotina.",
+    icon: "flask" as MarketingIconName,
   },
   {
-    titulo: "Entrega expressa",
-    texto: "Discreta e rastreavel",
+    titulo: "Energia estável o dia inteiro",
+    texto: "Sem pico curto de estimulante e sem queda brusca de desempenho.",
+    icon: "flow" as MarketingIconName,
   },
   {
-    titulo: "Assinatura flexivel",
-    texto: "Pause quando quiser",
+    titulo: "Sono reparador de verdade",
+    texto: "Desligamento mental noturno com recuperação cognitiva real.",
+    icon: "bolt" as MarketingIconName,
   },
   {
     titulo: "Suporte especializado",
-    texto: "Acompanhamento continuo",
+    texto: "Acompanhamento contínuo com ajustes estratégicos.",
+    icon: "chart" as MarketingIconName,
   },
 ];
 
 const passos = [
   {
-    titulo: "Passo 1: Mapeamento assincrono",
+    titulo: "Passo 1: Avaliação em 2 minutos",
     texto:
-      "Em menos de 2 minutos, voce responde a um questionario clinico sobre sua rotina, nivel de estresse e desgaste mental para uma avaliacao precisa do seu caso.",
+      "Você responde perguntas objetivas sobre foco, energia e qualidade do sono.",
+    icon: "target" as MarketingIconName,
   },
   {
-    titulo: "Passo 2: O seu protocolo",
+    titulo: "Passo 2: Protocolo personalizado",
     texto:
-      "Formulas manipuladas sob demanda por farmacias de excelencia, utilizando ativos de alta potencia para garantir o maximo de eficacia.",
+      "Indicamos o stack ideal para sua rotina e seu nível de demanda mental.",
+    icon: "flask" as MarketingIconName,
   },
   {
-    titulo: "Passo 3: Suporte e otimizacao",
+    titulo: "Passo 3: Ajustes contínuos",
     texto:
-      "Acompanhamento especializado ilimitado. Nossa equipe ajusta seu protocolo conforme sua performance evolui, garantindo resultados de longo prazo.",
+      "Você recebe acompanhamento para evoluir performance com consistência e segurança.",
+    icon: "chart" as MarketingIconName,
   },
 ];
 
 const protocolos = [
   {
     nome: "Morning Ritual",
+    tag: "Ideal para foco profundo",
     descricao:
-      "Otimize seu foco e energia matinal. Ingredientes clinicos para clareza mental profunda, poder de execucao e produtividade sem o crash da tarde.",
-    cta: "Ver protocolo matinal",
+      "Ativação cognitiva matinal para clareza mental, execução rápida e energia sem oscilação.",
+    cta: "Ver detalhes",
+    icon: "bolt" as MarketingIconName,
   },
   {
     nome: "Deep Recovery",
+    tag: "Ideal para recuperação noturna",
     descricao:
-      "Desligue sua mente a noite. Formulas focadas no relaxamento do sistema nervoso central, reducao do cortisol e inducao ao sono REM reparador.",
-    cta: "Ver protocolo noturno",
+      "Desaceleração mental à noite para reduzir hiperalerta e melhorar recuperação neural.",
+    cta: "Ver detalhes",
+    icon: "flow" as MarketingIconName,
   },
   {
     nome: "NeuroDrive Blend",
+    tag: "Solução completa 24h",
     descricao:
-      "A solucao definitiva. O motor cognitivo para ligar o seu cerebro pela manha e a engenharia de recuperacao para reparar a maquina a noite.",
-    cta: "Ver protocolo completo",
+      "Combinação estratégica manhã + noite para quem busca alta performance com consistência.",
+    cta: "Ver detalhes",
+    destaque: true,
+    icon: "neuro" as MarketingIconName,
   },
 ];
 
 const depoimentos = [
   {
     texto:
-      "A clareza mental que o Morning Ritual me deu mudou a forma como conduzo minhas reunioes de conselho. O brain fog simplesmente sumiu.",
+      "A clareza mental que o Morning Ritual me deu mudou a forma como conduzo minhas reuniões de conselho. O brain fog simplesmente sumiu.",
     autor: "Roberto S., CEO",
   },
   {
     texto:
-      "Sempre tive dificuldade para desligar o cerebro a noite por conta da ansiedade do negocio. O Deep Recovery resolveu minha insonia em poucos dias.",
+      "Sempre tive dificuldade para desligar o cérebro à noite por conta da ansiedade do negócio. O Deep Recovery resolveu minha insônia em poucos dias.",
     autor: "Fernando M., Founder",
   },
   {
     texto:
-      "O diferencial da NeuroDrive e o rigor. Nao e suplemento de prateleira, e protocolo prescrito que realmente entrega produtividade de alto nivel.",
+      "O diferencial da NeuroDrive é o rigor. Não é suplemento de prateleira, é protocolo prescrito que realmente entrega produtividade de alto nível.",
     autor: "Marcelo F., Diretor de Operacoes",
   },
 ];
 
 const planoNeuroDrive = [
-  "Avaliacao clinica assincrona.",
-  "Formulas de alta potencia entregues na sua porta.",
+  "Avaliação clínica assíncrona.",
+  "Fórmulas de alta potência entregues na sua porta.",
   "Frete gratuito para assinantes.",
-  "Suporte continuo com o time de especialistas.",
+  "Suporte contínuo com o time de especialistas.",
 ];
 
 const heroSlides = [
   {
-    eyebrow: "Minimalista",
-    titulo: "Performance cognitiva no nivel que voce exige.",
+    eyebrow: "Para alta performance",
+    titulo: "Mais foco, energia estável e recuperação mental no mesmo protocolo.",
     descricao:
-      "Protocolos nootropicos de grau clinico, prescritos para a sua rotina e entregues direto na sua porta.",
+      "Protocolos personalizados para quem precisa performar no limite sem viver no ciclo do cansaço.",
   },
   {
-    eyebrow: "Alta performance",
-    titulo: "Clareza mental, foco profundo e energia sem crash.",
+    eyebrow: "Personalização clínica",
+    titulo: "Seu protocolo é desenhado com base na sua rotina e nos seus sintomas.",
     descricao:
-      "Mapeamento rapido, formula personalizada e suporte continuo para otimizar a sua execucao.",
+      "Você responde uma avaliação rápida e recebe uma estratégia prática para manhã e noite.",
   },
   {
-    eyebrow: "Precisao clinica",
-    titulo: "Sua rotina merece um protocolo a altura da sua ambicao.",
+    eyebrow: "Execução consistente",
+    titulo: "Mais resultado no trabalho, menos desgaste cognitivo no fim do dia.",
     descricao:
-      "Formulas de alta potencia, assinatura flexivel e entrega discreta com acompanhamento especializado.",
+      "Clareza para decidir, energia para executar e suporte para sustentar evolução de performance.",
   },
 ];
+
+function MarketingIcon({
+  name,
+  className,
+}: {
+  name: MarketingIconName;
+  className?: string;
+}) {
+  if (name === "neuro") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M9 3a4 4 0 0 0-4 4v1a3 3 0 0 0 0 6v1a4 4 0 0 0 4 4" />
+        <path d="M15 3a4 4 0 0 1 4 4v1a3 3 0 0 1 0 6v1a4 4 0 0 1-4 4" />
+        <path d="M9 12h6" />
+      </svg>
+    );
+  }
+
+  if (name === "target") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none" stroke="currentColor" strokeWidth="1.8">
+        <circle cx="12" cy="12" r="8" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="12" cy="12" r="1" />
+      </svg>
+    );
+  }
+
+  if (name === "bolt") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none" stroke="currentColor" strokeWidth="1.8">
+        <path d="M13 2L3 14h7l-1 8 10-12h-7z" />
+      </svg>
+    );
+  }
+
+  if (name === "flow") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none" stroke="currentColor" strokeWidth="1.8">
+        <circle cx="5" cy="12" r="2" />
+        <circle cx="19" cy="6" r="2" />
+        <circle cx="19" cy="18" r="2" />
+        <path d="M7 12h10M17 8l-4 4 4 4" />
+      </svg>
+    );
+  }
+
+  if (name === "flask") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none" stroke="currentColor" strokeWidth="1.8">
+        <path d="M10 2v6l-5 9a3 3 0 0 0 3 5h8a3 3 0 0 0 3-5l-5-9V2" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none" stroke="currentColor" strokeWidth="1.8">
+      <path d="M3 3v18h18" />
+      <path d="M7 14l3-3 3 2 4-5" />
+    </svg>
+  );
+}
 
 function SearchIcon({ className }: { className?: string }) {
   return (
@@ -212,14 +296,14 @@ export default function Home() {
             alt="Background NeuroDrive"
             fill
             priority
-            className="object-contain object-[60%_54%] sm:object-contain sm:object-center xl:object-[64%_52%]"
+            className="object-cover object-center"
           />
         </div>
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.88)_0%,rgba(0,0,0,0.68)_35%,rgba(0,0,0,0.2)_62%,rgba(0,0,0,0.06)_100%)] md:bg-[linear-gradient(90deg,rgba(0,0,0,0.8)_0%,rgba(0,0,0,0.56)_32%,rgba(0,0,0,0.14)_58%,rgba(0,0,0,0.04)_100%)] xl:bg-[linear-gradient(90deg,rgba(0,0,0,0.72)_0%,rgba(0,0,0,0.48)_28%,rgba(0,0,0,0.1)_54%,rgba(0,0,0,0.04)_100%)]" />
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.84)_0%,rgba(0,0,0,0.18)_20%,rgba(0,0,0,0.1)_72%,rgba(0,0,0,0.8)_100%)] md:bg-[linear-gradient(180deg,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.12)_22%,rgba(0,0,0,0.06)_74%,rgba(0,0,0,0.74)_100%)]" />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/15" />
 
-        <header className="relative z-10 mx-auto flex w-full max-w-[1440px] items-center justify-between px-4 py-5 sm:px-6 lg:px-8 2xl:max-w-[1560px] 2xl:px-12">
+        <header className="relative z-10 flex w-full items-center justify-between px-4 py-5 sm:px-6 lg:px-8 2xl:px-12">
           <Link href="/" className="flex items-center">
             <img
               src="/logo.png?v=clean-20260315"
@@ -294,7 +378,7 @@ export default function Home() {
                 </summary>
                 <div className="absolute right-0 z-30 mt-3 w-72 rounded-2xl border border-white/15 bg-[#07111d]/95 p-4 shadow-2xl">
                   <p className="text-xs uppercase tracking-[0.18em] text-[#8cefff]">
-                    Sessao ativa
+                    Sessão ativa
                   </p>
                   <p className="mt-3 text-base font-semibold text-white">{sessionUser.name}</p>
                   <p className="mt-1 text-sm text-white/65">{sessionUser.email}</p>
@@ -327,7 +411,7 @@ export default function Home() {
           </div>
         </header>
 
-        <section className="relative z-10 mx-auto flex min-h-[620px] w-full max-w-[1440px] items-end px-4 pb-12 pt-6 md:hidden">
+        <section className="relative z-10 flex min-h-[620px] w-full items-start px-4 pb-12 pt-8 md:hidden">
           <div className="w-full">
             <div className="max-w-[18rem]">
               <p className="text-sm font-light tracking-wide text-white/80">
@@ -346,9 +430,12 @@ export default function Home() {
                 href="/questionario"
                 className="inline-flex rounded-full bg-[#00d8ff] px-5 py-3 text-xs font-semibold uppercase tracking-wide text-[#04111c] shadow-[0_0_24px_rgba(0,216,255,0.3)]"
               >
-                Shop Now
+                Descobrir meu protocolo ideal
               </Link>
             </div>
+            <p className="mt-3 text-xs text-white/72">
+              Avaliação personalizada, gratuita e concluída em cerca de 2 minutos.
+            </p>
 
             <div className="mt-5 flex items-center gap-2">
               {heroSlides.map((slide, index) => (
@@ -368,7 +455,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="relative z-10 mx-auto hidden min-h-[560px] w-full max-w-[1440px] items-end px-4 pb-14 pt-8 sm:min-h-[620px] sm:px-6 sm:pb-16 md:flex md:min-h-[680px] lg:min-h-[760px] lg:px-8 lg:pb-20 xl:min-h-[820px] 2xl:max-w-[1560px] 2xl:px-12 2xl:min-h-[880px]">
+        <section className="relative z-10 hidden min-h-[560px] w-full items-start px-4 pb-14 pt-8 sm:min-h-[620px] sm:px-6 sm:pb-16 md:flex md:min-h-[680px] lg:min-h-[760px] lg:px-8 lg:pb-20 xl:min-h-[820px] 2xl:px-12 2xl:min-h-[880px]">
           <div className="max-w-[min(92vw,33rem)] sm:max-w-[26rem] md:max-w-[27rem] lg:max-w-[31rem] xl:max-w-[34rem]">
             <div className="grid min-h-[25rem] sm:min-h-[29rem] md:min-h-[35rem] lg:min-h-[31rem] xl:min-h-[27rem]">
               {heroSlides.map((slide, index) => (
@@ -399,7 +486,7 @@ export default function Home() {
                 href="/questionario"
                 className="inline-flex rounded-full border border-[#7aefff] bg-[#00d8ff] px-5 py-3 text-xs font-semibold text-[#02131f] shadow-[0_0_35px_rgba(0,222,255,0.25)] transition hover:brightness-110 sm:text-sm sm:px-6 lg:px-7"
               >
-                Iniciar Mapeamento Cognitivo
+                Descobrir meu protocolo ideal
               </Link>
 
               <button
@@ -437,6 +524,9 @@ export default function Home() {
                 />
               ))}
             </div>
+            <p className="mt-4 text-sm text-white/72">
+              Avaliação personalizada, gratuita e concluída em cerca de 2 minutos.
+            </p>
           </div>
         </section>
       </div>
@@ -444,10 +534,10 @@ export default function Home() {
       <section className="mx-auto px-4 py-8 md:hidden">
         <div className="rounded-[2rem] border border-white/10 bg-[#060b15] p-5 shadow-[0_10px_40px_rgba(0,0,0,0.25)]">
           <h2 className="max-w-[10ch] text-4xl font-semibold leading-[1.02] tracking-[-0.05em] text-white">
-            Beneficios-chave
+            Benefícios-chave
           </h2>
           <p className="mt-3 text-sm text-white/72">
-            Informacoes essenciais sobre performance, clareza mental e protocolos clinicos.
+            Informações essenciais sobre performance, clareza mental e protocolos clínicos.
           </p>
 
           <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-[#090f1b] p-4">
@@ -465,19 +555,19 @@ export default function Home() {
                 href="/questionario"
                 className="inline-flex rounded-xl bg-[#00d8ff] px-4 py-3 text-sm font-semibold text-[#04111c]"
               >
-                Add to cart
+                Ver protocolo
               </Link>
               <Link
                 href="/questionario"
                 className="inline-flex rounded-xl border border-[#36dfff]/70 px-4 py-3 text-sm font-semibold text-white"
               >
-                Subscribe
+                Iniciar avaliação
               </Link>
               <Link
                 href="/questionario"
                 className="inline-flex rounded-xl bg-white px-4 py-3 text-sm font-semibold text-[#04111c]"
               >
-                Learn more
+                Falar com especialista
               </Link>
             </div>
           </div>
@@ -513,8 +603,8 @@ export default function Home() {
                 key={item.titulo}
                 className="rounded-[1.4rem] border border-white/10 bg-[#090f1b] p-4"
               >
-                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-[#36dfff]/30 bg-[radial-gradient(circle,rgba(0,216,255,0.2),transparent_70%)] text-xl text-[#7cecff]">
-                  {item.titulo.includes("Formulas") ? "Q" : "R"}
+                <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full border border-[#36dfff]/45 bg-[radial-gradient(circle,rgba(0,229,255,0.34),rgba(0,229,255,0.08)_62%,transparent_78%)] text-[#9ef7ff] shadow-[0_0_22px_rgba(0,229,255,0.28)]">
+                  <MarketingIcon name={item.icon} className="h-7 w-7" />
                 </div>
                 <h4 className="text-lg font-semibold text-white">{item.titulo}</h4>
                 <p className="mt-2 text-sm leading-relaxed text-white/68">{item.texto}</p>
@@ -529,9 +619,14 @@ export default function Home() {
                 key={passo.titulo}
                 className="rounded-[1.4rem] border border-white/10 bg-[#090f1b] p-4"
               >
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#76e7ff]">
-                  Passo {index + 1}
-                </p>
+                <div className="flex items-center justify-between">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#76e7ff]">
+                    Passo {index + 1}
+                  </p>
+                  <div className="rounded-full border border-[#36dfff]/45 bg-[radial-gradient(circle,rgba(0,229,255,0.24),transparent_72%)] p-2.5 text-[#9ef7ff] shadow-[0_0_16px_rgba(0,229,255,0.22)]">
+                    <MarketingIcon name={passo.icon} className="h-5 w-5" />
+                  </div>
+                </div>
                 <h4 className="mt-2 text-lg font-semibold text-white">{passo.titulo}</h4>
                 <p className="mt-2 text-sm leading-relaxed text-white/72">{passo.texto}</p>
               </article>
@@ -541,11 +636,33 @@ export default function Home() {
       </section>
 
       <section className="mx-auto hidden w-full max-w-[1440px] px-4 py-10 sm:px-6 md:block lg:px-8 2xl:max-w-[1560px] 2xl:px-12">
-        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {trustBadges.map((item) => (
-            <article key={item.titulo} className="rounded-2xl border border-white/15 bg-white/[0.03] p-4 backdrop-blur">
-              <h3 className="text-sm font-semibold text-[#8aefff]">{item.titulo}</h3>
-              <p className="mt-1 text-sm text-white/74">{item.texto}</p>
+            <article
+              key={item.titulo}
+              className="min-h-[120px] rounded-2xl border border-[#4ae9ff]/30 bg-[linear-gradient(180deg,rgba(255,255,255,0.06)_0%,rgba(255,255,255,0.02)_100%)] p-5 shadow-[0_0_24px_rgba(0,229,255,0.08)] backdrop-blur"
+            >
+              <div className="flex items-center gap-2">
+                <div className="rounded-full border border-[#35ddff]/45 bg-[radial-gradient(circle,rgba(0,229,255,0.24),transparent_70%)] p-2.5 text-[#9ef7ff] shadow-[0_0_14px_rgba(0,229,255,0.2)]">
+                  <MarketingIcon name={item.icon} className="h-5 w-5" />
+                </div>
+                <h3 className="text-base font-semibold text-[#b9f7ff]">{item.titulo}</h3>
+              </div>
+              <p className="mt-2 text-sm text-white/82">{item.texto}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto hidden w-full max-w-[1440px] px-4 pb-8 sm:px-6 md:block lg:px-8 2xl:max-w-[1560px] 2xl:px-12">
+        <div className="grid gap-4 md:grid-cols-2">
+          {depoimentos.slice(0, 2).map((depoimento) => (
+            <article key={`teaser-${depoimento.autor}`} className="rounded-2xl border border-white/15 bg-[#071021]/85 p-5">
+              <p className="text-xs uppercase tracking-[0.2em] text-[#8cefff]">Prova social</p>
+              <p className="mt-3 text-sm leading-relaxed text-white/82">&quot;{depoimento.texto}&quot;</p>
+              <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-[#8beeff]">
+                {depoimento.autor}
+              </p>
             </article>
           ))}
         </div>
@@ -559,7 +676,12 @@ export default function Home() {
         <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {passos.map((passo) => (
             <article key={passo.titulo} className="rounded-2xl border border-white/15 bg-[#071021] p-6">
-              <h3 className="text-lg font-semibold">{passo.titulo}</h3>
+              <div className="flex items-center gap-3">
+                <div className="rounded-full border border-[#35ddff]/45 bg-[radial-gradient(circle,rgba(0,229,255,0.24),transparent_70%)] p-2.5 text-[#9ef7ff] shadow-[0_0_16px_rgba(0,229,255,0.22)]">
+                  <MarketingIcon name={passo.icon} className="h-6 w-6" />
+                </div>
+                <h3 className="text-lg font-semibold">{passo.titulo}</h3>
+              </div>
               <p className="mt-3 text-sm leading-relaxed text-white/75">{passo.texto}</p>
             </article>
           ))}
@@ -569,12 +691,27 @@ export default function Home() {
       <section className="mx-auto hidden w-full max-w-[1440px] px-4 pb-12 sm:px-6 md:block md:pb-16 lg:px-8 2xl:max-w-[1560px] 2xl:px-12">
         <p className="text-xs uppercase tracking-[0.2em] text-[#74def2]">Protocolos</p>
         <h2 className="mt-3 max-w-3xl text-3xl font-semibold tracking-tight sm:text-4xl">
-          Protocolos baseados em neurociencia, personalizados para voce.
+          Protocolos baseados em neurociência, personalizados para você.
         </h2>
         <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {protocolos.map((protocolo) => (
-            <article key={protocolo.nome} className="rounded-2xl border border-white/15 bg-[#071021] p-6">
-              <h3 className="text-2xl font-semibold">{protocolo.nome}</h3>
+            <article
+              key={protocolo.nome}
+              className={
+                protocolo.destaque
+                  ? "rounded-2xl border border-[#45e8ff]/55 bg-[linear-gradient(180deg,#071021_0%,#0a1a30_100%)] p-6 shadow-[0_0_28px_rgba(0,229,255,0.14)]"
+                  : "rounded-2xl border border-white/15 bg-[#071021] p-6"
+              }
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8cefff]">
+                {protocolo.tag}
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="rounded-full border border-[#35ddff]/45 bg-[radial-gradient(circle,rgba(0,229,255,0.24),transparent_70%)] p-2.5 text-[#9ef7ff] shadow-[0_0_16px_rgba(0,229,255,0.22)]">
+                  <MarketingIcon name={protocolo.icon} className="h-6 w-6" />
+                </div>
+                <h3 className="text-2xl font-semibold">{protocolo.nome}</h3>
+              </div>
               <p className="mt-3 text-sm leading-relaxed text-white/75">{protocolo.descricao}</p>
               <Link
                 href="/questionario"
@@ -607,20 +744,26 @@ export default function Home() {
         <div className="rounded-3xl border border-[#00d6ff]/40 bg-gradient-to-r from-[#071021] via-[#0b1931] to-[#071021] p-6 sm:p-8 md:p-10">
           <p className="text-xs uppercase tracking-[0.2em] text-[#7de6ff]">Fechamento</p>
           <h3 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
-            Otimizacao completa e descomplicada.
+            Otimização completa e descomplicada.
           </h3>
           <p className="mt-4 max-w-4xl text-sm leading-relaxed text-white/80">
-            Nos gerenciamos o seu protocolo cognitivo para que voce foque apenas no que
-            importa: executar e crescer. Pela NeuroDrive, voce esta conectado a especialistas,
-            farmacias de alto padrao e recebe tudo no piloto automatico.
+            Você recebe um protocolo personalizado para foco, energia e recuperação, com conveniência total.
+            A NeuroDrive conecta estratégia clínica, manipulação de alta qualidade e acompanhamento contínuo para
+            sustentar sua performance no longo prazo.
           </p>
 
           <div className="mt-8 rounded-2xl border border-white/15 bg-black/25 p-5 sm:p-6">
             <h4 className="text-xl font-semibold text-[#8cefff]">Plano NeuroDrive</h4>
             <ul className="mt-4 grid gap-3 text-sm text-white/85 sm:grid-cols-2">
-              {planoNeuroDrive.map((item) => (
-                <li key={item} className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
-                  {item}
+              {planoNeuroDrive.map((item, index) => (
+                <li key={item} className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+                  <div className="rounded-full border border-[#35ddff]/45 bg-[radial-gradient(circle,rgba(0,229,255,0.2),transparent_72%)] p-2 text-[#9ef7ff] shadow-[0_0_14px_rgba(0,229,255,0.2)]">
+                    <MarketingIcon
+                      name={index % 2 === 0 ? "target" : "chart"}
+                      className="h-4.5 w-4.5"
+                    />
+                  </div>
+                  <span>{item}</span>
                 </li>
               ))}
             </ul>
@@ -628,7 +771,7 @@ export default function Home() {
               href="/questionario"
               className="mt-6 inline-flex rounded-full bg-[#00d6ff] px-6 py-3 text-sm font-semibold text-[#04111c] transition hover:brightness-110"
             >
-              Comecar minha avaliacao
+              Descobrir meu protocolo ideal
             </Link>
           </div>
         </div>

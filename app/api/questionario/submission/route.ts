@@ -72,7 +72,7 @@ export async function POST(request: Request) {
     console.error("questionario_submission_error", error);
 
     return NextResponse.json(
-      { error: "Nao foi possivel salvar seu resultado agora." },
+      { error: "Não foi possível salvar seu resultado agora." },
       { status: 500 },
     );
   }
