@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import MobileStickyCTA from "@/app/components/MobileStickyCTA";
 import WhatsAppCTAButton from "@/app/components/WhatsAppCTAButton";
-import heroBottle from "@/design-novo/neuro-protocol-architect/src/assets/hero-bottle.png";
 
 const navItems = [
   { label: "Protocol", href: "#protocol" },
@@ -394,7 +393,7 @@ export default function Home() {
               <div className="absolute inset-0 hidden scale-110 rounded-full bg-[#22e7ff]/[0.08] blur-[100px] md:block" />
               <div className="absolute left-1/2 top-1/2 hidden h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#22e7ff]/[0.06] blur-[60px] md:block" />
               <Image
-                src={heroBottle}
+                src="/imagem-central.png"
                 alt="NeuroDrive premium supplement bottle"
                 className="relative w-48 max-w-md drop-shadow-2xl md:w-full"
                 priority
