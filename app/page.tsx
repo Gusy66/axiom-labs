@@ -388,22 +388,21 @@ export default function Home() {
         <div className="pointer-events-none absolute right-1/4 top-1/3 hidden h-[700px] w-[700px] -translate-y-1/2 rounded-full bg-[#22e7ff]/[0.04] blur-[150px] md:block" />
         <div className="pointer-events-none absolute left-1/2 top-1/4 h-[300px] w-[300px] -translate-x-1/2 rounded-full bg-[#22e7ff]/[0.06] blur-[100px] md:hidden" />
 
-        <div className="relative z-10 mx-auto w-full max-w-[430px] px-4 pb-5 md:hidden">
-          <div className="relative overflow-hidden rounded-[2.8rem] border border-white/20 bg-[linear-gradient(180deg,rgba(0,0,0,0.88)_0%,rgba(0,0,0,0.95)_100%)] px-6 pb-10 pt-8 shadow-[0_30px_80px_rgba(0,0,0,0.55)]">
-            <div className="pointer-events-none absolute inset-0 rounded-[2.8rem] border border-white/8" />
-            <div className="pointer-events-none absolute inset-x-14 top-34 h-24 rounded-full bg-[#18dfff]/20 blur-2xl" />
+        <div className="relative z-10 mx-auto w-full max-w-[430px] px-5 pb-7 md:hidden">
+          <div className="relative overflow-hidden bg-transparent px-2 pb-10 pt-4">
+            <div className="pointer-events-none absolute inset-x-8 top-28 h-28 rounded-full bg-[#18dfff]/22 blur-3xl" />
 
             <div className="relative z-10 flex flex-col items-center">
               <Image
                 src="/hero-bottle.png"
                 alt="NeuroDrive premium supplement bottle"
-                width={220}
-                height={220}
-                className="h-auto w-[176px] drop-shadow-[0_25px_45px_rgba(0,0,0,0.75)]"
+                width={300}
+                height={300}
+                className="h-auto w-[228px] drop-shadow-[0_28px_50px_rgba(0,0,0,0.82)]"
                 priority
               />
 
-              <h1 className="mt-7 text-center text-[2.45rem] font-bold leading-[1.05] tracking-[-0.04em] text-white">
+              <h1 className="mt-6 text-center text-[2.52rem] font-bold leading-[1.05] tracking-[-0.04em] text-white">
                 Desbloqueie sua
                 <br />
                 excelência cognitiva.
@@ -417,7 +416,7 @@ export default function Home() {
 
               <Link
                 href="/questionario"
-                className="mt-8 inline-flex w-full items-center justify-center rounded-full bg-[linear-gradient(90deg,#5687ff_0%,#3f71ff_55%,#4f7eff_100%)] px-8 py-4 text-center text-base font-semibold text-white shadow-[0_12px_28px_rgba(74,117,255,0.42)] transition hover:brightness-110"
+                className="mt-8 inline-flex w-[88%] items-center justify-center rounded-full bg-[linear-gradient(90deg,#5687ff_0%,#3f71ff_55%,#4f7eff_100%)] px-8 py-4 text-center text-base font-semibold text-white shadow-[0_12px_30px_rgba(74,117,255,0.48)] transition hover:brightness-110"
               >
                 Inicializar Protocolo
               </Link>
