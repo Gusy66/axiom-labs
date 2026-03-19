@@ -386,63 +386,65 @@ export default function Home() {
         <div className="pointer-events-none absolute inset-0 opacity-[0.03] [background-image:linear-gradient(rgba(20,240,255,0.28)_1px,transparent_1px),linear-gradient(90deg,rgba(20,240,255,0.28)_1px,transparent_1px)] [background-size:60px_60px]" />
         <div className="pointer-events-none absolute bottom-0 left-1/4 hidden h-[400px] w-[400px] rounded-full bg-[#22e7ff]/[0.03] blur-[120px] md:block" />
         <div className="pointer-events-none absolute right-1/4 top-1/3 hidden h-[700px] w-[700px] -translate-y-1/2 rounded-full bg-[#22e7ff]/[0.04] blur-[150px] md:block" />
+        <div className="pointer-events-none absolute left-1/2 top-1/4 h-[300px] w-[300px] -translate-x-1/2 rounded-full bg-[#22e7ff]/[0.06] blur-[100px] md:hidden" />
 
-        <div className="relative z-10 mx-auto grid w-full max-w-[1380px] items-center gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
+        <div className="relative z-10 mx-auto grid w-full max-w-[1380px] items-center gap-6 px-5 md:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
           <div className="order-first flex justify-center lg:order-last lg:justify-end">
             <div className="relative animate-[nd-float_6s_ease-in-out_infinite] md:animate-[nd-float_6s_ease-in-out_infinite]">
               <div className="absolute inset-0 hidden scale-110 rounded-full bg-[#22e7ff]/[0.08] blur-[100px] md:block" />
               <div className="absolute left-1/2 top-1/2 hidden h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#22e7ff]/[0.06] blur-[60px] md:block" />
+              <div className="absolute left-1/2 top-1/2 h-[180px] w-[180px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#22e7ff]/[0.08] blur-[50px] md:hidden" />
               <Image
                 src="/hero-bottle.png"
                 alt="NeuroDrive premium supplement bottle"
-                className="relative w-48 max-w-md drop-shadow-2xl md:w-full"
+                className="relative w-44 max-w-md drop-shadow-2xl sm:w-56 md:w-full"
                 priority
               />
             </div>
           </div>
 
-          <div className="order-last space-y-6 md:space-y-8 lg:order-first">
+          <div className="order-last space-y-5 text-center md:space-y-8 lg:order-first lg:text-left">
             <p className="font-mono-data text-xs font-semibold uppercase tracking-[0.2em] text-[#22e7ff]">
               Execução consistente
             </p>
-            <h1 className="text-5xl font-bold leading-[1.02] tracking-[-0.05em] text-white sm:text-6xl lg:text-7xl">
+            <h1 className="text-[2rem] font-bold leading-[1.02] tracking-[-0.05em] text-white sm:text-4xl md:text-5xl lg:text-7xl">
               Elimine a
               <br />
               <span className="text-[#22e7ff] [text-shadow:0_0_30px_rgba(34,231,255,0.32)]">
                 latência cognitiva.
               </span>
             </h1>
-            <p className="max-w-xl text-base leading-relaxed text-white/62 md:text-[1.05rem]">
+            <p className="mx-auto max-w-lg text-sm leading-relaxed text-white/62 line-clamp-3 md:text-[1.05rem] md:line-clamp-none lg:mx-0">
               Um neuro-stack de grau clínico projetado para 12 horas de output
-              sustentado. Sem jitters, sem crash, sem retornos decrescentes.
+              sustentado. Sem jitters, sem crash.
             </p>
 
-            <div>
+            <div className="pt-1 md:pt-2">
               <Link
                 href="/questionario"
-                className="inline-flex rounded-xl bg-[#13dff8] px-8 py-4 text-base font-semibold text-[#021318] transition hover:brightness-110"
+                className="inline-flex w-full rounded-xl bg-[#13dff8] px-7 py-3.5 text-center text-sm font-semibold text-[#021318] transition hover:brightness-110 sm:w-auto sm:px-8 md:py-4 md:text-base"
               >
                 Inicializar Protocolo
               </Link>
             </div>
 
-            <p className="flex items-center gap-3 text-xs text-white/45">
+            <p className="flex items-center justify-center gap-3 text-[11px] text-white/45 md:text-xs lg:justify-start">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#13dff8]" />
               Envio em 24h · Garantia de 30 dias
             </p>
 
-            <div className="flex gap-6 border-t border-white/10 pt-6 md:gap-10">
+            <div className="flex justify-center gap-5 border-t border-white/10 pt-4 md:gap-10 md:pt-6 lg:justify-start">
               {[
                 { value: "2.847", suffix: "+", label: "Protocolos ativos" },
                 { value: "94", suffix: "%", label: "Taxa de recompra" },
                 { value: "40", suffix: "%", label: "Mais tempo em flow" },
               ].map((item) => (
-                <div key={item.label}>
-                  <p className="font-mono-data text-xl font-bold text-white md:text-2xl lg:text-3xl">
+                <div key={item.label} className="text-center lg:text-left">
+                  <p className="font-mono-data text-lg font-bold text-white sm:text-xl md:text-2xl lg:text-3xl">
                     {item.value}
                     <span className="text-[#22e7ff]">{item.suffix}</span>
                   </p>
-                  <p className="mt-1 text-[10px] text-white/40 md:text-xs">{item.label}</p>
+                  <p className="mt-1 text-[9px] text-white/40 md:text-xs">{item.label}</p>
                 </div>
               ))}
             </div>
