@@ -382,13 +382,50 @@ export default function Home() {
         )}
       </header>
 
-      <section className="relative flex min-h-screen items-center overflow-hidden pt-16">
+      <section className="relative flex min-h-[100svh] items-center overflow-hidden pt-16 md:min-h-screen">
         <div className="pointer-events-none absolute inset-0 opacity-[0.03] [background-image:linear-gradient(rgba(20,240,255,0.28)_1px,transparent_1px),linear-gradient(90deg,rgba(20,240,255,0.28)_1px,transparent_1px)] [background-size:60px_60px]" />
         <div className="pointer-events-none absolute bottom-0 left-1/4 hidden h-[400px] w-[400px] rounded-full bg-[#22e7ff]/[0.03] blur-[120px] md:block" />
         <div className="pointer-events-none absolute right-1/4 top-1/3 hidden h-[700px] w-[700px] -translate-y-1/2 rounded-full bg-[#22e7ff]/[0.04] blur-[150px] md:block" />
         <div className="pointer-events-none absolute left-1/2 top-1/4 h-[300px] w-[300px] -translate-x-1/2 rounded-full bg-[#22e7ff]/[0.06] blur-[100px] md:hidden" />
 
-        <div className="relative z-10 mx-auto grid w-full max-w-[1380px] items-center gap-6 px-5 md:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
+        <div className="relative z-10 mx-auto w-full max-w-[430px] px-4 pb-5 md:hidden">
+          <div className="relative overflow-hidden rounded-[2.8rem] border border-white/20 bg-[linear-gradient(180deg,rgba(0,0,0,0.88)_0%,rgba(0,0,0,0.95)_100%)] px-6 pb-10 pt-8 shadow-[0_30px_80px_rgba(0,0,0,0.55)]">
+            <div className="pointer-events-none absolute inset-0 rounded-[2.8rem] border border-white/8" />
+            <div className="pointer-events-none absolute inset-x-14 top-34 h-24 rounded-full bg-[#18dfff]/20 blur-2xl" />
+
+            <div className="relative z-10 flex flex-col items-center">
+              <Image
+                src="/hero-bottle.png"
+                alt="NeuroDrive premium supplement bottle"
+                width={220}
+                height={220}
+                className="h-auto w-[176px] drop-shadow-[0_25px_45px_rgba(0,0,0,0.75)]"
+                priority
+              />
+
+              <h1 className="mt-7 text-center text-[2.45rem] font-bold leading-[1.05] tracking-[-0.04em] text-white">
+                Desbloqueie sua
+                <br />
+                excelência cognitiva.
+              </h1>
+
+              <div className="mt-5 h-px w-20 bg-gradient-to-r from-transparent via-[#4e78ff] to-transparent" />
+
+              <p className="mt-5 text-center text-[1.1rem] text-white/82">
+                Fórmula nootrópica avançada.
+              </p>
+
+              <Link
+                href="/questionario"
+                className="mt-8 inline-flex w-full items-center justify-center rounded-full bg-[linear-gradient(90deg,#5687ff_0%,#3f71ff_55%,#4f7eff_100%)] px-8 py-4 text-center text-base font-semibold text-white shadow-[0_12px_28px_rgba(74,117,255,0.42)] transition hover:brightness-110"
+              >
+                Inicializar Protocolo
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative z-10 mx-auto hidden w-full max-w-[1380px] items-center gap-6 px-5 md:grid md:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
           <div className="order-first flex justify-center lg:order-last lg:justify-end">
             <div className="relative animate-[nd-float_6s_ease-in-out_infinite] md:animate-[nd-float_6s_ease-in-out_infinite]">
               <div className="absolute inset-0 hidden scale-110 rounded-full bg-[#22e7ff]/[0.08] blur-[100px] md:block" />
