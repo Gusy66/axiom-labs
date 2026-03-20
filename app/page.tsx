@@ -15,56 +15,57 @@ const navItems = [
 
 const valueProps = [
   {
-    title: "Deep Work Estendido",
-    outcome: "Aumente a duração do estado de flow em 40% via suporte à acetilcolina.",
-    metric: "+3.2h",
-    metricLabel: "deep work/dia",
-    icon: "brain" as const,
+    title: "Especializada para você",
+    outcome: "Alta potência sob medida. Dosagem máxima para suas necessidades",
+    metric: "Formulação Personalizada",
+    metricLabel: "",
+    icon: "target" as const,
   },
   {
-    title: "Vigília Sem Estimulante",
-    outcome: "ATP sustentado sem picos de cortisol de alternativas à base de cafeína.",
-    metric: "0",
-    metricLabel: "crashes/semana",
-    icon: "zap" as const,
-  },
-  {
-    title: "Limpeza Neural Noturna",
-    outcome: "Clearance acelerado de resíduos metabólicos durante o sono.",
-    metric: "92%",
-    metricLabel: "qualidade do sono",
+    title: "Sem extrapolar",
+    outcome: "Doses efetivas, não apenas simbólicas",
+    metric: "Concentração Clínica",
+    metricLabel: "",
     icon: "moon" as const,
   },
   {
-    title: "Fadiga Decisória Reduzida",
-    outcome: "Função executiva estabilizada durante negociações de alto risco.",
-    metric: "6h+",
-    metricLabel: "clareza sustentada",
-    icon: "target" as const,
+    title: "Consulta assíncrona",
+    outcome: "Fórmula exclusiva para seu perfil cognitivo",
+    metric: "Anvisa",
+    metricLabel: "",
+    icon: "brain" as const,
+  },
+  {
+    title: "",
+    outcome:
+      "Não é euforia. É trabalho melhor. Mais clareza nas decisões. Menos erros em análises. Foco sustentável, sem crash.",
+    metric: "Performance Real",
+    metricLabel: "",
+    icon: "zap" as const,
   },
 ];
 
 const phases = [
   {
-    phase: "Fase I",
-    name: "Ativação",
-    time: "0-30 min",
+    phase: "Passo 1",
+    name: "Mapeamento Assíncrono",
+    time: "2 min",
     description:
-      "Precursores de neurotransmissores cruzam a barreira hematoencefálica. Clareza mental em minutos.",
+      "Em menos de 2 minutos, você responde a um questionário clínico sobre sua rotina, nível de estresse e desgaste mental para uma avaliação precisa do seu caso.",
   },
   {
-    phase: "Fase II",
-    name: "Sustentação",
-    time: "1-8h",
+    phase: "Passo 2",
+    name: "O Seu Protocolo",
+    time: "Sob demanda",
     description:
-      "Adaptógenos modulam a resposta ao estresse. Energia estável sem picos de cortisol.",
+      "Fórmulas manipuladas sob demanda por farmácias de excelência, utilizando ativos de alta potência para garantir o máximo de eficácia.",
   },
   {
-    phase: "Fase III",
-    name: "Reparo",
-    time: "8-24h",
+    phase: "Passo 3",
+    name: "Suporte e Otimização",
+    time: "Contínuo",
     description:
-      "Fatores neurotróficos (BDNF) suportam plasticidade estrutural. Recuperação neural para o dia seguinte.",
+      "Acompanhamento especializado ilimitado. Nossa equipe ajusta seu protocolo conforme sua performance evolui, garantindo resultados de longo prazo.",
   },
 ];
 
@@ -75,7 +76,7 @@ const products = [
     name: "NeuroDrive Blend",
     subtitle: "O Processador Central",
     description:
-      "Combinação estratégica manhã + noite para alta performance com consistência.",
+      "A solução definitiva. O motor cognitivo para ligar o seu cérebro pela manhã e a engenharia de recuperação para reparar a máquina à noite.",
     features: [
       "Stack integrado de 24h",
       "Economia de 15%",
@@ -88,7 +89,8 @@ const products = [
     tag: "Ideal para Foco Profundo",
     name: "Morning Ritual",
     subtitle: "O Módulo de Ignição",
-    description: "Ativação cognitiva matinal para clareza mental e execução rápida.",
+    description:
+      "Otimize seu foco e energia matinal. Ingredientes clínicos para clareza mental profunda, poder de execução e produtividade sem o crash da tarde.",
     features: ["Acetilcolina + L-Teanina", "Foco em 20 minutos", "Sem crash às 15h"],
     highlighted: false,
   },
@@ -98,7 +100,7 @@ const products = [
     name: "Deep Recovery",
     subtitle: "O Reset do Sistema",
     description:
-      "Desaceleração mental à noite para reduzir hiperalerta e melhorar recuperação.",
+      "Desligue sua mente à noite. Fórmulas focadas no relaxamento do sistema nervoso central, redução do cortisol e indução ao sono REM reparador.",
     features: [
       "Magnésio Treonato + Ashwagandha",
       "Sono profundo em 7 dias",
@@ -111,7 +113,7 @@ const products = [
 const testimonials = [
   {
     quote:
-      "A clareza mental que o Morning Ritual me deu mudou a forma como conduzo minhas reuniões de conselho.",
+      "A clareza mental que o Morning Drive me deu mudou a forma como conduzo minhas reuniões de conselho. O brain fog simplesmente sumiu.",
     before: "Brain fog às 15h era meu teto.",
     after: "Ritmo cognitivo sustentado durante board de 6 horas.",
     name: "Roberto S.",
@@ -119,7 +121,7 @@ const testimonials = [
   },
   {
     quote:
-      "O Deep Recovery resolveu minha insônia em poucos dias. Finalmente consigo desligar o cérebro à noite.",
+      "Sempre tive dificuldade para desligar o cérebro à noite por conta da ansiedade do negócio. O Deep Recovery resolveu minha insônia em poucos dias.",
     before: "2-3h para pegar no sono.",
     after: "Adormeço em 20min. Whoop sleep score: 62 -> 89.",
     name: "Fernando M.",
@@ -127,7 +129,7 @@ const testimonials = [
   },
   {
     quote:
-      "Não é suplemento de prateleira, é protocolo prescrito que realmente entrega produtividade de alto nível.",
+      "O diferencial da Axiom é o rigor. Não é um suplemento de prateleira, é um protocolo prescrito que realmente entrega o soco de produtividade que eu precisava.",
     before: "Testei 12 nootrópicos. Nenhum durou.",
     after: "6 meses com NeuroDrive. Performance consistente.",
     name: "Marcelo F.",
@@ -139,7 +141,7 @@ const closingBenefits = [
   "Avaliação clínica assíncrona.",
   "Fórmulas de alta potência entregues na sua porta.",
   "Frete gratuito para assinantes.",
-  "Suporte contínuo com especialistas.",
+  "Suporte contínuo com o time de especialistas.",
 ];
 
 function MenuIcon({ className }: { className?: string }) {
@@ -403,22 +405,22 @@ export default function Home() {
               />
 
               <h1 className="mt-6 text-center text-[2.52rem] font-bold leading-[1.05] tracking-[-0.04em] text-white">
-                Desbloqueie sua
+                Performance cognitiva
                 <br />
-                excelência cognitiva.
+                no nível que você exige.
               </h1>
 
               <div className="mt-5 h-px w-20 bg-gradient-to-r from-transparent via-[#4e78ff] to-transparent" />
 
-              <p className="mt-5 text-center text-[1.1rem] text-white/82">
-                Fórmula nootrópica avançada.
+              <p className="mt-5 text-center text-[1.02rem] leading-relaxed text-white/82">
+                Protocolos nootrópicos de grau clínico, prescritos para a sua rotina e entregues direto na sua porta.
               </p>
 
               <Link
                 href="/questionario"
                 className="mt-8 inline-flex w-[88%] items-center justify-center rounded-full bg-[linear-gradient(90deg,#5687ff_0%,#3f71ff_55%,#4f7eff_100%)] px-8 py-4 text-center text-base font-semibold text-white shadow-[0_12px_30px_rgba(74,117,255,0.48)] transition hover:brightness-110"
               >
-                Inicializar Protocolo
+                Iniciar Mapeamento Cognitivo
               </Link>
             </div>
           </div>
@@ -433,6 +435,8 @@ export default function Home() {
               <Image
                 src="/hero-bottle.png"
                 alt="NeuroDrive premium supplement bottle"
+                width={520}
+                height={520}
                 className="relative w-44 max-w-md drop-shadow-2xl sm:w-56 md:w-full"
                 priority
               />
@@ -441,18 +445,17 @@ export default function Home() {
 
           <div className="order-last space-y-5 text-center md:space-y-8 lg:order-first lg:text-left">
             <p className="font-mono-data text-xs font-semibold uppercase tracking-[0.2em] text-[#22e7ff]">
-              Execução consistente
+              Performance cognitiva premium
             </p>
             <h1 className="text-[2rem] font-bold leading-[1.02] tracking-[-0.05em] text-white sm:text-4xl md:text-5xl lg:text-7xl">
-              Elimine a
+              Performance cognitiva
               <br />
               <span className="text-[#22e7ff] [text-shadow:0_0_30px_rgba(34,231,255,0.32)]">
-                latência cognitiva.
+                no nível que você exige.
               </span>
             </h1>
             <p className="mx-auto max-w-lg text-sm leading-relaxed text-white/62 line-clamp-3 md:text-[1.05rem] md:line-clamp-none lg:mx-0">
-              Um neuro-stack de grau clínico projetado para 12 horas de output
-              sustentado. Sem jitters, sem crash.
+              Sem perda de tempo ou suplementos subdosados. Apenas protocolos nootrópicos de grau clínico, prescritos para a sua rotina e entregues direto na sua porta.
             </p>
 
             <div className="pt-1 md:pt-2">
@@ -460,13 +463,13 @@ export default function Home() {
                 href="/questionario"
                 className="inline-flex w-full rounded-xl bg-[#13dff8] px-7 py-3.5 text-center text-sm font-semibold text-[#021318] transition hover:brightness-110 sm:w-auto sm:px-8 md:py-4 md:text-base"
               >
-                Inicializar Protocolo
+                Iniciar Mapeamento Cognitivo
               </Link>
             </div>
 
             <p className="flex items-center justify-center gap-3 text-[11px] text-white/45 md:text-xs lg:justify-start">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#13dff8]" />
-              Envio em 24h · Garantia de 30 dias
+              Sem salas de espera. Entrega discreta e acompanhamento contínuo.
             </p>
 
             <div className="flex justify-center gap-5 border-t border-white/10 pt-4 md:gap-10 md:pt-6 lg:justify-start">
@@ -493,17 +496,16 @@ export default function Home() {
         <div className="mx-auto w-full max-w-[1380px] px-4 sm:px-6 lg:px-8">
           <div className="mb-12 space-y-4 text-center md:mb-20">
             <p className="font-mono-data text-xs font-semibold uppercase tracking-[0.2em] text-[#22e7ff]">
-              Resultados quantificados
             </p>
             <h2 className="text-4xl font-bold leading-[1.1] tracking-[-0.04em] text-white md:text-6xl">
-              Mudanças biológicas mensuráveis.
+              Clareza mental. Sem café. Apenas ciência.
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-white/60">
-              Não prometemos &quot;mais foco&quot;. Entregamos shifts biológicos verificáveis.
+              Apenas protocolos prescritos para a sua rotina, com conveniência total e liberdade para ajustar sua assinatura quando quiser.
             </p>
           </div>
 
-          <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 scrollbar-hide md:mx-0 md:grid md:grid-cols-4 md:gap-5 md:overflow-visible md:px-0 md:pb-0">
+          <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 scrollbar-hide md:mx-auto md:grid md:max-w-6xl md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0 xl:grid-cols-4">
             {valueProps.map((item) => (
               <article
                 key={item.title}
@@ -529,13 +531,13 @@ export default function Home() {
         <div className="mx-auto w-full max-w-[1380px] px-4 sm:px-6 lg:px-8">
           <div className="mb-12 space-y-4 md:mb-20">
             <p className="font-mono-data text-xs font-semibold uppercase tracking-[0.2em] text-[#22e7ff]">
-              Protocolo de Convergência Sináptica
+              Como funciona
             </p>
             <h2 className="text-4xl font-bold leading-[1.1] tracking-[-0.04em] text-white md:text-6xl">
               Engenharia mental em 3 fases.
             </h2>
             <p className="max-w-2xl text-lg text-white/60">
-              Um sistema de otimização neural de 24 horas com fases sequenciais.
+              A jornada foi desenhada para ser rápida, precisa e acompanhada do início ao ajuste fino do protocolo.
             </p>
           </div>
 
@@ -635,7 +637,11 @@ export default function Home() {
                         : "border border-white/12 text-white hover:border-[#13dff8]/55 hover:text-[#13dff8]"
                     }`}
                   >
-                    {item.highlighted ? "Inicializar Stack Completo" : "Ver Detalhes"}
+                    {item.highlighted
+                      ? "Ver protocolo completo"
+                      : item.name === "Morning Ritual"
+                        ? "Ver protocolo matinal"
+                        : "Ver protocolo noturno"}
                   </Link>
                 </div>
               </article>
@@ -649,10 +655,10 @@ export default function Home() {
         <div className="mx-auto w-full max-w-[1380px] px-4 sm:px-6 lg:px-8">
           <div className="mb-12 space-y-4 md:mb-20">
             <p className="font-mono-data text-xs font-semibold uppercase tracking-[0.2em] text-[#22e7ff]">
-              O Cohort NeuroDrive
+              Avaliações
             </p>
             <h2 className="text-4xl font-bold leading-[1.1] tracking-[-0.04em] text-white md:text-6xl">
-              O que a elite corporativa reporta.
+              O que a elite corporativa diz sobre a Axiom.
             </h2>
           </div>
 
@@ -719,11 +725,10 @@ export default function Home() {
                 Fechamento
               </p>
               <h2 className="max-w-2xl text-5xl font-bold leading-[1.02] tracking-[-0.05em] text-white md:text-6xl">
-                Atualize seu sistema operacional.
+                Otimização completa e descomplicada.
               </h2>
               <p className="max-w-2xl text-lg text-white/62">
-                Protocolo personalizado para foco, energia e recuperação. Estratégia clínica com
-                acompanhamento contínuo.
+                Nós gerenciamos o seu protocolo cognitivo para que você foque apenas no que importa: executar e crescer. Pela Axiom Labs, você está conectado a especialistas, farmácias de alto padrão e recebe tudo no piloto automático.
               </p>
 
               <div className="max-w-sm space-y-3">
@@ -737,7 +742,7 @@ export default function Home() {
               </div>
 
               <div className="max-w-xl space-y-4 rounded-xl border border-white/10 bg-[#101622] p-5 md:space-y-5 md:p-7">
-                <h3 className="text-lg font-semibold text-[#22e7ff]">Plano NeuroDrive</h3>
+                <h3 className="text-lg font-semibold text-[#22e7ff]">O Plano NeuroDrive</h3>
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4">
                   {closingBenefits.map((item) => (
                     <div key={item} className="flex items-center gap-2.5">
@@ -753,10 +758,10 @@ export default function Home() {
                   href="/questionario"
                   className="inline-block w-full rounded-lg bg-[#13dff8] px-8 py-4 text-center text-base font-semibold text-[#021318] transition hover:brightness-110 md:w-auto md:px-10"
                 >
-                  Descobrir meu protocolo ideal
+                  Começar minha avaliação
                 </Link>
                 <p className="mt-3 text-xs text-white/42">
-                  Avaliação gratuita concluída em ~2 minutos.
+                  Mapeamento cognitivo rápido, assíncrono e concluído em cerca de 2 minutos.
                 </p>
               </div>
             </div>

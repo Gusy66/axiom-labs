@@ -29,7 +29,7 @@ export default function MobileStickyCTA() {
         href="/questionario"
         className="flex w-full items-center justify-center rounded-full bg-[#00d6ff] px-5 py-3 text-sm font-semibold text-[#04111c]"
       >
-        Inicializar Protocolo
+        Iniciar Mapeamento
       </Link>
     </div>
   );

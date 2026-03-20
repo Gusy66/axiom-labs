@@ -367,8 +367,22 @@ export default function QuestionarioPage() {
         setErroPersistencia("Nao foi possivel salvar seu resultado agora. Tente novamente.");
         return;
       }
-
-      router.push("/auth?callbackUrl=%2Fconta");
+      const sessaoResponse = await fetch("/api/auth/session", {
+        method: "GET",
+        cache: "no-store",
+      });
+      if (sessaoResponse.ok) {
+        const sessao = (await sessaoResponse.json()) as
+          | {
+              user?: { id?: string } | null;
+            }
+          | null;
+        if (sessao?.user?.id) {
+          router.replace("/conta");
+          return;
+        }
+      }
+      router.replace("/auth?callbackUrl=%2Fconta&mode=cadastro");
     } catch {
       setErroPersistencia("Nao foi possivel salvar seu resultado agora. Tente novamente.");
     } finally {

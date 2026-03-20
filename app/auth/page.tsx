@@ -30,9 +30,14 @@ export default function AuthPage() {
   );
 
   useEffect(() => {
-    const fromSearch = new URLSearchParams(window.location.search).get("callbackUrl");
+    const searchParams = new URLSearchParams(window.location.search);
+    const fromSearch = searchParams.get("callbackUrl");
+    const modeFromSearch = searchParams.get("mode");
     if (fromSearch) {
       setCallbackUrl(fromSearch);
+    }
+    if (modeFromSearch === "cadastro" || modeFromSearch === "login") {
+      setModo(modeFromSearch);
     }
   }, []);
 
@@ -115,7 +120,7 @@ export default function AuthPage() {
           <p className="mt-2 text-sm text-white/68">
             {modo === "login"
               ? "Acesse sua conta para continuar sua jornada."
-              : "Crie sua conta para começar sua avaliação nootrópica."}
+              : "Crie sua conta para salvar seu protocolo e acessar sua área exclusiva."}
           </p>
         </div>
 

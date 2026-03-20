@@ -89,6 +89,9 @@ if (process.env.AUTH_APPLE_ID && process.env.AUTH_APPLE_SECRET) {
 export const authConfig = {
   adapter: PrismaAdapter(db),
   trustHost: true,
+  session: {
+    strategy: "jwt",
+  },
   providers,
   pages: {
     signIn: "/auth",
