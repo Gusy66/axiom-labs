@@ -414,9 +414,17 @@ export default function QuestionarioPage() {
 
         {stage === "questions" && perguntaAtual && (
           <section key={`pergunta-${perguntaAtual.id}`} className="mt-7 animate-[fadeIn_.35s_ease] sm:mt-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#73e8ff]">
-              Tela {indicePergunta + 1}
-            </p>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#73e8ff]">
+                Tela {indicePergunta + 1}
+              </p>
+              <Link
+                href="/"
+                className="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/[0.03] px-4 py-2 text-sm font-semibold text-white/75 transition hover:border-[#00d8ff]/45 hover:text-[#8cefff]"
+              >
+                Voltar para home
+              </Link>
+            </div>
             <h1 className="mt-2 text-2xl font-bold text-white sm:text-3xl">{perguntaAtual.titulo}</h1>
             {perguntaAtual.descricao && (
               <p className="mt-2 text-sm text-white/68">{perguntaAtual.descricao}</p>
@@ -466,9 +474,17 @@ export default function QuestionarioPage() {
 
         {stage === "lead" && (
           <section className="mt-8 animate-[fadeIn_.35s_ease]">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#73e8ff]">
-              Tela 7
-            </p>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#73e8ff]">
+                Tela 7
+              </p>
+              <Link
+                href="/"
+                className="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/[0.03] px-4 py-2 text-sm font-semibold text-white/75 transition hover:border-[#00d8ff]/45 hover:text-[#8cefff]"
+              >
+                Voltar para home
+              </Link>
+            </div>
             <h1 className="mt-2 text-2xl font-bold text-white sm:text-3xl">
               Estamos processando seu perfil
             </h1>

@@ -15,33 +15,34 @@ const navItems = [
 
 const valueProps = [
   {
-    title: "Especializada para você",
-    outcome: "Alta potência sob medida. Dosagem máxima para suas necessidades",
-    metric: "Formulação Personalizada",
+    title: "Não é euforia. É trabalho melhor.",
+    outcome:
+      "Mais clareza nas decisões. Menos erros em análises. Foco sustentável, sem crash.",
+    metric: "Performance Real",
     metricLabel: "",
-    icon: "target" as const,
+    icon: "zap" as const,
   },
   {
-    title: "Sem extrapolar",
-    outcome: "Doses efetivas, não apenas simbólicas",
+    title: "Sem bullshit",
+    outcome: "Doses efetivas, não apenas simbólicas.",
     metric: "Concentração Clínica",
     metricLabel: "",
     icon: "moon" as const,
   },
   {
-    title: "Consulta assíncrona",
-    outcome: "Fórmula exclusiva para seu perfil cognitivo",
+    title: "Alta potência sob medida",
+    outcome: "Dosagem máxima para suas necessidades.",
+    metric: "Formulação Personalizada",
+    metricLabel: "",
+    icon: "target" as const,
+  },
+  {
+    title: "Validado pela Anvisa",
+    outcome:
+      "Fórmula exclusiva para seu perfil cognitivo. Supervisão farmacêutica em cada detalhe.",
     metric: "Anvisa",
     metricLabel: "",
     icon: "brain" as const,
-  },
-  {
-    title: "",
-    outcome:
-      "Não é euforia. É trabalho melhor. Mais clareza nas decisões. Menos erros em análises. Foco sustentável, sem crash.",
-    metric: "Performance Real",
-    metricLabel: "",
-    icon: "zap" as const,
   },
 ];
 
@@ -69,46 +70,19 @@ const phases = [
   },
 ];
 
-const products = [
-  {
-    icon: "layers" as const,
-    tag: "Solução Completa 24H",
-    name: "NeuroDrive Blend",
-    subtitle: "O Processador Central",
-    description:
-      "A solução definitiva. O motor cognitivo para ligar o seu cérebro pela manhã e a engenharia de recuperação para reparar a máquina à noite.",
-    features: [
-      "Stack integrado de 24h",
-      "Economia de 15%",
-      "Protocolo unificado",
-    ],
-    highlighted: true,
-  },
-  {
-    icon: "zap" as const,
-    tag: "Ideal para Foco Profundo",
-    name: "Morning Ritual",
-    subtitle: "O Módulo de Ignição",
-    description:
-      "Otimize seu foco e energia matinal. Ingredientes clínicos para clareza mental profunda, poder de execução e produtividade sem o crash da tarde.",
-    features: ["Acetilcolina + L-Teanina", "Foco em 20 minutos", "Sem crash às 15h"],
-    highlighted: false,
-  },
-  {
-    icon: "moon" as const,
-    tag: "Ideal para Recuperação Noturna",
-    name: "Deep Recovery",
-    subtitle: "O Reset do Sistema",
-    description:
-      "Desligue sua mente à noite. Fórmulas focadas no relaxamento do sistema nervoso central, redução do cortisol e indução ao sono REM reparador.",
-    features: [
-      "Magnésio Treonato + Ashwagandha",
-      "Sono profundo em 7 dias",
-      "Recuperação neural acelerada",
-    ],
-    highlighted: false,
-  },
-];
+const neuroDriveBlend = {
+  icon: "layers" as const,
+  tag: "Solução Completa 24H",
+  name: "NeuroDrive Blend",
+  subtitle: "O Processador Central",
+  description:
+    "A solução definitiva. O motor cognitivo para ligar o seu cérebro pela manhã e a engenharia de recuperação para reparar a máquina à noite.",
+  features: [
+    "Stack integrado de 24h",
+    "Economia de 15%",
+    "Protocolo unificado",
+  ],
+};
 
 const testimonials = [
   {
@@ -338,12 +312,18 @@ export default function Home() {
             ))}
           </nav>
 
-          <div className="hidden items-center gap-4 md:flex">
+          <div className="hidden items-center gap-3 md:flex">
             <Link
-              href="/questionario"
+              href="/auth?mode=login"
+              className="rounded-xl border border-white/12 bg-white/[0.03] px-4 py-2.5 text-sm font-semibold text-white/82 transition hover:border-[#22e7ff]/45 hover:text-[#22e7ff]"
+            >
+              Entrar
+            </Link>
+            <Link
+              href="/auth?mode=cadastro"
               className="rounded-xl bg-[#13dff8] px-5 py-2.5 text-sm font-semibold text-[#021318] transition hover:brightness-110"
             >
-              Inicializar protocolo
+              Criar conta
             </Link>
           </div>
 
@@ -373,13 +353,22 @@ export default function Home() {
                 {item.label}
               </a>
             ))}
-            <Link
-              href="/questionario"
-              className="mt-2 block rounded-lg bg-[#13dff8] px-5 py-2.5 text-center text-sm font-semibold text-[#021318]"
-              onClick={() => setMenuOpen(false)}
-            >
-              Inicializar protocolo
-            </Link>
+            <div className="mt-2 grid gap-2">
+              <Link
+                href="/auth?mode=login"
+                className="block rounded-lg border border-white/12 bg-white/[0.03] px-5 py-2.5 text-center text-sm font-semibold text-white/82"
+                onClick={() => setMenuOpen(false)}
+              >
+                Entrar
+              </Link>
+              <Link
+                href="/auth?mode=cadastro"
+                className="block rounded-lg bg-[#13dff8] px-5 py-2.5 text-center text-sm font-semibold text-[#021318]"
+                onClick={() => setMenuOpen(false)}
+              >
+                Criar conta
+              </Link>
+            </div>
           </div>
         )}
       </header>
@@ -501,14 +490,14 @@ export default function Home() {
               Clareza mental. Sem café. Apenas ciência.
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-white/60">
-              Apenas protocolos prescritos para a sua rotina, com conveniência total e liberdade para ajustar sua assinatura quando quiser.
+              Para executivos que precisam de foco real, não promessas.
             </p>
           </div>
 
           <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 scrollbar-hide md:mx-auto md:grid md:max-w-6xl md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0 xl:grid-cols-4">
             {valueProps.map((item) => (
               <article
-                key={item.title}
+                key={item.metric}
                 className="group min-w-[75vw] snap-center rounded-xl border border-white/10 bg-[#090d15] p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.03),0_4px_24px_-4px_rgba(0,0,0,0.6)] transition hover:-translate-y-0.5 hover:shadow-[0_0_25px_-5px_rgba(34,231,255,0.25)] sm:min-w-[60vw] md:min-w-0 md:p-6"
               >
                 <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg border border-[#22e7ff]/20 bg-[#22e7ff]/10 text-[#22e7ff]">
@@ -584,68 +573,51 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="flex flex-col items-start gap-5 md:grid md:grid-cols-3">
-            {products.map((item) => (
-              <article
-                key={item.name}
-                className={`relative flex w-full flex-col overflow-hidden rounded-xl border p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.03),0_4px_24px_-4px_rgba(0,0,0,0.6)] transition hover:-translate-y-0.5 md:p-7 ${
-                  item.highlighted
-                    ? "border-[#22e7ff]/55 shadow-[0_0_30px_-10px_rgba(34,231,255,0.16)] md:-mt-3 md:scale-[1.02]"
-                    : "border-white/10 bg-[#090d15] hover:shadow-[0_0_25px_-5px_rgba(34,231,255,0.25)]"
-                }`}
-              >
-                {item.highlighted && (
-                  <div className="absolute right-0 top-0 rounded-bl-lg border-b border-l border-[#22e7ff]/20 bg-[#22e7ff]/10 px-3 py-1 font-mono-data text-[10px] uppercase tracking-widest text-[#22e7ff]">
-                    Recomendado
-                  </div>
-                )}
+          <div className="mx-auto flex w-full max-w-4xl">
+            <article className="relative flex w-full flex-col overflow-hidden rounded-xl border border-[#22e7ff]/55 bg-[#090d15] p-6 shadow-[0_0_30px_-10px_rgba(34,231,255,0.16)] transition hover:-translate-y-0.5 md:p-8">
+              <div className="absolute right-0 top-0 rounded-bl-lg border-b border-l border-[#22e7ff]/20 bg-[#22e7ff]/10 px-3 py-1 font-mono-data text-[10px] uppercase tracking-widest text-[#22e7ff]">
+                Recomendado
+              </div>
 
-                <div className="space-y-5">
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#22e7ff]/20 bg-[#22e7ff]/10 text-[#22e7ff]">
-                        <DynamicIcon name={item.icon} className="h-4 w-4" />
-                      </div>
-                      <span className="font-mono-data text-[10px] uppercase tracking-widest text-[#22e7ff]">
-                        {item.tag}
-                      </span>
+              <div className="space-y-6">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#22e7ff]/20 bg-[#22e7ff]/10 text-[#22e7ff]">
+                      <DynamicIcon name={neuroDriveBlend.icon} className="h-4 w-4" />
                     </div>
-                    <h3 className="text-4xl font-semibold tracking-[-0.03em] text-white">
-                      {item.name}
-                    </h3>
-                    <p className="font-mono-data text-xs text-white/45">{item.subtitle}</p>
+                    <span className="font-mono-data text-[10px] uppercase tracking-widest text-[#22e7ff]">
+                      {neuroDriveBlend.tag}
+                    </span>
                   </div>
+                  <h3 className="text-4xl font-semibold tracking-[-0.03em] text-white md:text-5xl">
+                    {neuroDriveBlend.name}
+                  </h3>
+                  <p className="font-mono-data text-xs text-white/45">{neuroDriveBlend.subtitle}</p>
+                </div>
 
-                  <p className="flex-1 text-sm leading-relaxed text-white/45">
-                    {item.description}
-                  </p>
+                <p className="max-w-3xl text-sm leading-relaxed text-white/45 md:text-base">
+                  {neuroDriveBlend.description}
+                </p>
 
-                  <ul className="space-y-2.5">
-                    {item.features.map((feature) => (
-                      <li key={feature} className="flex items-center gap-2.5 text-sm text-white/55">
-                        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#13dff8]/80" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
+                <ul className="grid gap-3 sm:grid-cols-3">
+                  {neuroDriveBlend.features.map((feature) => (
+                    <li key={feature} className="flex items-center gap-2.5 text-sm text-white/55">
+                      <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#13dff8]/80" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
 
+                <div className="pt-1">
                   <Link
                     href="/questionario"
-                    className={`block rounded-lg px-5 py-3.5 text-center text-sm font-semibold transition ${
-                      item.highlighted
-                        ? "bg-[#13dff8] text-[#021318] hover:brightness-110"
-                        : "border border-white/12 text-white hover:border-[#13dff8]/55 hover:text-[#13dff8]"
-                    }`}
+                    className="block rounded-lg bg-[#13dff8] px-5 py-3.5 text-center text-sm font-semibold text-[#021318] transition hover:brightness-110 md:inline-block md:min-w-[260px]"
                   >
-                    {item.highlighted
-                      ? "Ver protocolo completo"
-                      : item.name === "Morning Ritual"
-                        ? "Ver protocolo matinal"
-                        : "Ver protocolo noturno"}
+                    Ver protocolo completo
                   </Link>
                 </div>
-              </article>
-            ))}
+              </div>
+            </article>
           </div>
         </div>
       </section>
