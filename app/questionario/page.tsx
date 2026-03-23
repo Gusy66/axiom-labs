@@ -364,7 +364,7 @@ export default function QuestionarioPage() {
       });
 
       if (!response.ok) {
-        setErroPersistencia("Nao foi possivel salvar seu resultado agora. Tente novamente.");
+        setErroPersistencia("Não foi possível salvar seu resultado agora. Tente novamente.");
         return;
       }
       const sessaoResponse = await fetch("/api/auth/session", {
@@ -384,7 +384,7 @@ export default function QuestionarioPage() {
       }
       router.replace("/auth?callbackUrl=%2Fconta&mode=cadastro");
     } catch {
-      setErroPersistencia("Nao foi possivel salvar seu resultado agora. Tente novamente.");
+      setErroPersistencia("Não foi possível salvar seu resultado agora. Tente novamente.");
     } finally {
       setPersistindo(false);
     }
@@ -401,7 +401,7 @@ export default function QuestionarioPage() {
           <div className="mt-4">
             <div className="flex items-center justify-between text-xs font-semibold text-white/65">
               <span>Raio-X da Alta Performance</span>
-              <span>{progresso}% concluido</span>
+              <span>{progresso}% concluído</span>
             </div>
             <div className="mt-2 h-2 w-full rounded-full bg-white/10">
               <div
@@ -510,7 +510,7 @@ export default function QuestionarioPage() {
                   onChange={(event) => setEmail(event.target.value)}
                   type="email"
                   className="mt-1 w-full rounded-xl border border-white/12 bg-white/[0.03] px-3 py-2 text-white outline-none placeholder:text-white/35 focus:border-[#00d8ff] focus:ring-2 focus:ring-[#00d8ff]/35"
-                  placeholder="voce@empresa.com"
+                  placeholder="você@empresa.com"
                 />
               </label>
 
@@ -555,7 +555,7 @@ export default function QuestionarioPage() {
         {stage === "result" && (
           <section className="mt-8 space-y-5 animate-[fadeIn_.35s_ease]">
             <div className="rounded-xl border border-white/10 bg-white/[0.03] p-5 sm:p-6">
-              <p className="text-sm text-white/65">Ola, {nome}.</p>
+              <p className="text-sm text-white/65">Olá, {nome}.</p>
               <h2 className="mt-1 text-2xl font-bold text-white sm:text-3xl">{resultado.diagnostico}</h2>
               <p className="mt-3 text-sm leading-relaxed text-white/72">{resultado.explicacao}</p>
             </div>
@@ -577,8 +577,8 @@ export default function QuestionarioPage() {
             </div>
 
             <div className="rounded-xl border border-[#00d8ff]/25 bg-[linear-gradient(135deg,#07111d_0%,#0b1d31_100%)] p-5 text-white sm:p-6">
-              <p className="text-sm text-[#b8f6ff]">Preco avulso estimado do protocolo: R$ 498/mes</p>
-              <h3 className="mt-2 text-2xl font-bold sm:text-3xl">Assinatura NeuroDrive: R$ 297/mes</h3>
+              <p className="text-sm text-[#b8f6ff]">Preço avulso estimado do protocolo: R$ 678/mês</p>
+              <h3 className="mt-2 text-2xl font-bold sm:text-3xl">Assinatura NeuroDrive: R$ 498/mês</h3>
               <p className="mt-2 text-sm text-white/72">
                 Condição exclusiva para quem concluiu a avaliação.
               </p>

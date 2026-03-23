@@ -7,10 +7,10 @@ import MobileStickyCTA from "@/app/components/MobileStickyCTA";
 import WhatsAppCTAButton from "@/app/components/WhatsAppCTAButton";
 
 const navItems = [
-  { label: "Protocol", href: "#protocol" },
-  { label: "Science", href: "#science" },
-  { label: "Products", href: "#products" },
-  { label: "Results", href: "#results" },
+  { label: "Protocolo", href: "#protocol" },
+  { label: "Como funciona", href: "#science" },
+  { label: "Produtos", href: "#products" },
+  { label: "Resultados", href: "#results" },
 ];
 
 const valueProps = [
@@ -27,7 +27,7 @@ const valueProps = [
     outcome: "Doses efetivas, não apenas simbólicas.",
     metric: "Concentração Clínica",
     metricLabel: "",
-    icon: "moon" as const,
+    icon: "brain" as const,
   },
   {
     title: "Alta potência sob medida",
@@ -59,10 +59,16 @@ const phases = [
     name: "O Seu Protocolo",
     time: "Sob demanda",
     description:
-      "Fórmulas manipuladas sob demanda por farmácias de excelência, utilizando ativos de alta potência para garantir o máximo de eficácia.",
+      "Fórmula personalizada, alta potência, manipulada.",
   },
   {
     phase: "Passo 3",
+    name: "Entrega Sem Esforço",
+    time: "Direto em casa",
+    description: "Receba em casa. Embalagem discreta. Zero complicação.",
+  },
+  {
+    phase: "Passo 4",
     name: "Suporte e Otimização",
     time: "Contínuo",
     description:
@@ -74,13 +80,41 @@ const neuroDriveBlend = {
   icon: "layers" as const,
   tag: "Solução Completa 24H",
   name: "NeuroDrive Blend",
-  subtitle: "O Processador Central",
+  subtitle: "Alta performance, do primeiro call ao último insight.",
   description:
-    "A solução definitiva. O motor cognitivo para ligar o seu cérebro pela manhã e a engenharia de recuperação para reparar a máquina à noite.",
+    "Dois protocolos complementares: Alfa GPC, CoQ10 e PQQ para foco e performance pela manhã; Magnésio, Inositol e L-Teanina para recuperação profunda à noite. O pacote completo para sua máxima performance, em altas doses.",
   features: [
+    "Morning Ritual + Deep Recovery",
     "Stack integrado de 24h",
-    "Economia de 15%",
     "Protocolo unificado",
+  ],
+  modules: [
+    {
+      icon: "zap" as const,
+      tag: "Ideal para foco profundo",
+      name: "Morning Ritual",
+      subtitle: "Clareza mental para começar na frente.",
+      description:
+        "Alfa GPC, Fosfatidilserina, Ginkgo Biloba e CoQ10 apoiam o foco, a memória, a energia limpa e a tomada de decisão em dias de alta exigência.",
+      benefits: [
+        "Acetilcolina + L-Teanina",
+        "Foco em 20 minutos",
+        "Sem crash às 15h",
+      ],
+    },
+    {
+      icon: "moon" as const,
+      tag: "Ideal para recuperação noturna",
+      name: "Deep Recovery",
+      subtitle: "Desligue com inteligência. Recupere com consistência.",
+      description:
+        "Magnésio Bisglicinato, Inositol, L-Teanina e Melatonina favorecem o relaxamento, o descanso de qualidade e a prontidão para o dia seguinte.",
+      benefits: [
+        "Magnésio Treonato + Ashwagandha",
+        "Sono profundo em 7 dias",
+        "Recuperação neural acelerada",
+      ],
+    },
   ],
 };
 
@@ -97,7 +131,7 @@ const testimonials = [
     quote:
       "Sempre tive dificuldade para desligar o cérebro à noite por conta da ansiedade do negócio. O Deep Recovery resolveu minha insônia em poucos dias.",
     before: "2-3h para pegar no sono.",
-    after: "Adormeço em 20min. Whoop sleep score: 62 -> 89.",
+    after: "Adormeço em 20 min e acordo disposto.",
     name: "Fernando M.",
     role: "Founder, SaaS Company",
   },
@@ -109,13 +143,6 @@ const testimonials = [
     name: "Marcelo F.",
     role: "Diretor de Operações",
   },
-];
-
-const closingBenefits = [
-  "Avaliação clínica assíncrona.",
-  "Fórmulas de alta potência entregues na sua porta.",
-  "Frete gratuito para assinantes.",
-  "Suporte contínuo com o time de especialistas.",
 ];
 
 function MenuIcon({ className }: { className?: string }) {
@@ -205,21 +232,6 @@ function LayersIcon({ className }: { className?: string }) {
     <svg viewBox="0 0 24 24" aria-hidden="true" className={className}>
       <path
         d="M12 4l8 4-8 4-8-4 8-4zm8 8-8 4-8-4m16 4-8 4-8-4"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function CheckIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className}>
-      <path
-        d="M20 6L9 17l-5-5"
         fill="none"
         stroke="currentColor"
         strokeWidth="1.8"
@@ -461,21 +473,6 @@ export default function Home() {
               Sem salas de espera. Entrega discreta e acompanhamento contínuo.
             </p>
 
-            <div className="flex justify-center gap-5 border-t border-white/10 pt-4 md:gap-10 md:pt-6 lg:justify-start">
-              {[
-                { value: "2.847", suffix: "+", label: "Protocolos ativos" },
-                { value: "94", suffix: "%", label: "Taxa de recompra" },
-                { value: "40", suffix: "%", label: "Mais tempo em flow" },
-              ].map((item) => (
-                <div key={item.label} className="text-center lg:text-left">
-                  <p className="font-mono-data text-lg font-bold text-white sm:text-xl md:text-2xl lg:text-3xl">
-                    {item.value}
-                    <span className="text-[#22e7ff]">{item.suffix}</span>
-                  </p>
-                  <p className="mt-1 text-[9px] text-white/40 md:text-xs">{item.label}</p>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -523,16 +520,16 @@ export default function Home() {
               Como funciona
             </p>
             <h2 className="text-4xl font-bold leading-[1.1] tracking-[-0.04em] text-white md:text-6xl">
-              Engenharia mental em 3 fases.
+              Engenharia mental em 4 fases.
             </h2>
             <p className="max-w-2xl text-lg text-white/60">
-              A jornada foi desenhada para ser rápida, precisa e acompanhada do início ao ajuste fino do protocolo.
+              Rápida. Precisa. Contínua.
             </p>
           </div>
 
-          <div className="relative grid gap-6 md:grid-cols-3">
+          <div className="relative grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             <div className="absolute bottom-0 left-[13px] top-0 w-px bg-[linear-gradient(180deg,rgba(34,231,255,0.3),rgba(34,231,255,0.08),transparent)] md:hidden" />
-            <div className="absolute left-[16.67%] right-[16.67%] top-12 hidden h-px bg-[linear-gradient(90deg,transparent,rgba(34,231,255,0.3),transparent)] md:block" />
+            <div className="absolute left-[12.5%] right-[12.5%] top-12 hidden h-px bg-[linear-gradient(90deg,transparent,rgba(34,231,255,0.3),transparent)] xl:block" />
 
             {phases.map((item) => (
               <article
@@ -608,6 +605,43 @@ export default function Home() {
                   ))}
                 </ul>
 
+                <div className="grid gap-4 lg:grid-cols-2">
+                  {neuroDriveBlend.modules.map((module) => (
+                    <article
+                      key={module.name}
+                      className="rounded-xl border border-white/10 bg-[#0b1019] p-5"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#22e7ff]/20 bg-[#22e7ff]/10 text-[#22e7ff]">
+                          <DynamicIcon name={module.icon} className="h-4 w-4" />
+                        </div>
+                        <span className="font-mono-data text-[10px] uppercase tracking-widest text-[#22e7ff]">
+                          {module.tag}
+                        </span>
+                      </div>
+
+                      <h4 className="mt-5 text-2xl font-semibold tracking-[-0.03em] text-white">
+                        {module.name}
+                      </h4>
+                      <p className="mt-2 font-mono-data text-xs text-white/40">
+                        {module.subtitle}
+                      </p>
+                      <p className="mt-5 text-sm leading-relaxed text-white/50">
+                        {module.description}
+                      </p>
+
+                      <ul className="mt-5 space-y-2.5">
+                        {module.benefits.map((benefit) => (
+                          <li key={benefit} className="flex items-center gap-2.5 text-sm text-white/60">
+                            <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#13dff8]/80" />
+                            {benefit}
+                          </li>
+                        ))}
+                      </ul>
+                    </article>
+                  ))}
+                </div>
+
                 <div className="pt-1">
                   <Link
                     href="/questionario"
@@ -630,7 +664,7 @@ export default function Home() {
               Avaliações
             </p>
             <h2 className="text-4xl font-bold leading-[1.1] tracking-[-0.04em] text-white md:text-6xl">
-              O que a elite corporativa diz sobre a Axiom.
+              O que a elite corporativa diz sobre a NeuroDrive.
             </h2>
           </div>
 
@@ -668,76 +702,6 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="mt-10 flex flex-wrap justify-center gap-3 text-center md:mt-16 md:gap-4">
-            {["CGMP Certified", "NSF Sport", "COA por Lote", "200+ Substâncias Testadas"].map(
-              (badge) => (
-                <div
-                  key={badge}
-                  className="rounded-lg border border-white/10 bg-[#090d15] px-3 py-2 md:px-5 md:py-2.5"
-                >
-                  <span className="font-mono-data text-[10px] text-white/55 md:text-xs">
-                    {badge}
-                  </span>
-                </div>
-              ),
-            )}
-          </div>
-        </div>
-      </section>
-
-      <section id="cta" className="relative py-16 md:py-28" data-reveal>
-        <div className="mx-auto mb-16 h-px w-[min(100%-2rem,1380px)] bg-[linear-gradient(90deg,transparent,rgba(34,231,255,0.2),transparent)] md:mb-28" />
-        <div className="mx-auto w-full max-w-[1380px] px-4 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden rounded-2xl border border-[#22e7ff]/32 bg-[#090d15] p-6 sm:p-8 md:p-12 lg:p-20">
-            <div className="pointer-events-none absolute -right-32 -top-32 hidden h-80 w-80 rounded-full bg-[#22e7ff]/[0.08] blur-[120px] md:block" />
-            <div className="pointer-events-none absolute -bottom-20 -left-20 hidden h-60 w-60 rounded-full bg-[#22e7ff]/[0.04] blur-[100px] md:block" />
-
-            <div className="relative z-10 space-y-8 md:space-y-10">
-              <p className="font-mono-data text-xs font-semibold uppercase tracking-[0.2em] text-[#22e7ff]">
-                Fechamento
-              </p>
-              <h2 className="max-w-2xl text-5xl font-bold leading-[1.02] tracking-[-0.05em] text-white md:text-6xl">
-                Otimização completa e descomplicada.
-              </h2>
-              <p className="max-w-2xl text-lg text-white/62">
-                Nós gerenciamos o seu protocolo cognitivo para que você foque apenas no que importa: executar e crescer. Pela Axiom Labs, você está conectado a especialistas, farmácias de alto padrão e recebe tudo no piloto automático.
-              </p>
-
-              <div className="max-w-sm space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="font-mono-data text-xs text-white/45">Lote Atual</span>
-                  <span className="font-mono-data text-xs text-[#22e7ff]">84% Alocado</span>
-                </div>
-                <div className="h-1.5 overflow-hidden rounded-full bg-white/10">
-                  <div className="h-full w-[84%] rounded-full bg-gradient-to-r from-[#13dff8] to-[#22e7ff]" />
-                </div>
-              </div>
-
-              <div className="max-w-xl space-y-4 rounded-xl border border-white/10 bg-[#101622] p-5 md:space-y-5 md:p-7">
-                <h3 className="text-lg font-semibold text-[#22e7ff]">O Plano NeuroDrive</h3>
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4">
-                  {closingBenefits.map((item) => (
-                    <div key={item} className="flex items-center gap-2.5">
-                      <CheckIcon className="h-3.5 w-3.5 shrink-0 text-[#13dff8]" />
-                      <span className="text-sm text-white/60">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="text-center md:text-left">
-                <Link
-                  href="/questionario"
-                  className="inline-block w-full rounded-lg bg-[#13dff8] px-8 py-4 text-center text-base font-semibold text-[#021318] transition hover:brightness-110 md:w-auto md:px-10"
-                >
-                  Começar minha avaliação
-                </Link>
-                <p className="mt-3 text-xs text-white/42">
-                  Mapeamento cognitivo rápido, assíncrono e concluído em cerca de 2 minutos.
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 

@@ -1,3 +1,4 @@
+import { Prisma } from "@prisma/client";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
@@ -21,6 +22,28 @@ type SubmissionPayload = {
   };
 };
 
+function withQuizSessionCookie(response: NextResponse, quizSessionId: string) {
+  response.cookies.set({
+    name: QUIZ_SESSION_COOKIE,
+    value: quizSessionId,
+    httpOnly: true,
+    sameSite: "lax",
+    secure: process.env.NODE_ENV === "production",
+    path: "/",
+    maxAge: QUIZ_SESSION_MAX_AGE_SECONDS,
+  });
+
+  return response;
+}
+
+function isDatabaseUnavailableError(error: unknown) {
+  return (
+    error instanceof Prisma.PrismaClientInitializationError ||
+    (error instanceof Error &&
+      error.message.includes("Can't reach database server"))
+  );
+}
+
 export async function POST(request: Request) {
   try {
     const session = await auth();
@@ -37,37 +60,47 @@ export async function POST(request: Request) {
       );
     }
 
-    const submission = await db.questionnaireSubmission.create({
-      data: {
-        userId: session?.user?.id,
-        sessionId: quizSessionId,
-        leadName: body.leadName?.trim() || null,
-        leadEmail: body.leadEmail?.trim().toLowerCase() || null,
-        respostas: body.respostas,
-        diagnostico: body.resultado.diagnostico,
-        explicacao: body.resultado.explicacao,
-        perfil: body.resultado.perfil,
-        passoManha: body.resultado.passoManha,
-        passoNoite: body.resultado.passoNoite,
-      },
-      select: {
-        id: true,
-      },
-    });
+    try {
+      const submission = await db.questionnaireSubmission.create({
+        data: {
+          userId: session?.user?.id,
+          sessionId: quizSessionId,
+          leadName: body.leadName?.trim() || null,
+          leadEmail: body.leadEmail?.trim().toLowerCase() || null,
+          respostas: body.respostas,
+          diagnostico: body.resultado.diagnostico,
+          explicacao: body.resultado.explicacao,
+          perfil: body.resultado.perfil,
+          passoManha: body.resultado.passoManha,
+          passoNoite: body.resultado.passoNoite,
+        },
+        select: {
+          id: true,
+        },
+      });
 
-    const response = NextResponse.json({ id: submission.id });
+      return withQuizSessionCookie(
+        NextResponse.json({ id: submission.id, persisted: true }),
+        quizSessionId,
+      );
+    } catch (error) {
+      if (isDatabaseUnavailableError(error)) {
+        console.warn("questionario_submission_database_unavailable");
+        return withQuizSessionCookie(
+          NextResponse.json(
+            {
+              id: null,
+              persisted: false,
+              warning: "database_unavailable",
+            },
+            { status: 202 },
+          ),
+          quizSessionId,
+        );
+      }
 
-    response.cookies.set({
-      name: QUIZ_SESSION_COOKIE,
-      value: quizSessionId,
-      httpOnly: true,
-      sameSite: "lax",
-      secure: process.env.NODE_ENV === "production",
-      path: "/",
-      maxAge: QUIZ_SESSION_MAX_AGE_SECONDS,
-    });
-
-    return response;
+      throw error;
+    }
   } catch (error) {
     console.error("questionario_submission_error", error);
 

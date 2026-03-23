@@ -44,27 +44,35 @@ export default async function ContaPage() {
 
   const cookieStore = await cookies();
   const quizSessionId = cookieStore.get(QUIZ_SESSION_COOKIE)?.value;
+  let bancoIndisponivel = false;
+  let submission: Awaited<ReturnType<typeof db.questionnaireSubmission.findFirst>> =
+    null;
 
-  if (quizSessionId) {
-    await db.questionnaireSubmission.updateMany({
+  try {
+    if (quizSessionId) {
+      await db.questionnaireSubmission.updateMany({
+        where: {
+          userId: null,
+          sessionId: quizSessionId,
+        },
+        data: {
+          userId: session.user.id,
+        },
+      });
+    }
+
+    submission = await db.questionnaireSubmission.findFirst({
       where: {
-        userId: null,
-        sessionId: quizSessionId,
-      },
-      data: {
         userId: session.user.id,
       },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
+  } catch (error) {
+    bancoIndisponivel = true;
+    console.warn("conta_questionario_database_unavailable", error);
   }
-
-  const submission = await db.questionnaireSubmission.findFirst({
-    where: {
-      userId: session.user.id,
-    },
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
 
   const respostas = (submission?.respostas as Record<string, unknown> | null) ?? null;
   const entradasRespostas = respostas ? Object.entries(respostas) : [];
@@ -226,13 +234,15 @@ export default async function ContaPage() {
             ) : (
               <section className="rounded-[18px] border border-[#ff8f7a]/18 bg-[#160f13] p-6 shadow-[0_10px_34px_rgba(0,0,0,0.28)] sm:p-7">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#ffb3a5]">
-                  Plano pendente
+                  {bancoIndisponivel ? "Banco indisponível" : "Plano pendente"}
                 </p>
                 <h2 className="mt-3 text-[2rem] font-semibold tracking-[-0.04em] text-white">
-                  Sem protocolo salvo
+                  {bancoIndisponivel ? "Não foi possível carregar seu protocolo" : "Sem protocolo salvo"}
                 </h2>
                 <p className="mt-3 max-w-2xl text-[15px] leading-[1.9] text-white/56">
-                  Ainda não encontramos um resultado vinculado à sua conta. Faça sua avaliação para liberar recomendações personalizadas.
+                  {bancoIndisponivel
+                    ? "Seu questionário não pôde ser sincronizado agora porque o banco de dados está offline. Quando o PostgreSQL voltar, tente novamente para carregar seu protocolo."
+                    : "Ainda não encontramos um resultado vinculado à sua conta. Faça sua avaliação para liberar recomendações personalizadas."}
                 </p>
                 <Link
                   href="/questionario"
