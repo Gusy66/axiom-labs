@@ -397,11 +397,11 @@ export default function Home() {
 
             <div className="relative z-10 flex flex-col items-center">
               <Image
-                src="/hero-bottle.png"
+                src="/foto_sem_fundo.png"
                 alt="NeuroDrive premium supplement bottle"
-                width={300}
-                height={300}
-                className="h-auto w-[228px] drop-shadow-[0_28px_50px_rgba(0,0,0,0.82)]"
+                width={450}
+                height={450}
+                className="h-auto w-[342px] drop-shadow-[0_28px_50px_rgba(0,0,0,0.82)]"
                 priority
               />
 
@@ -434,11 +434,11 @@ export default function Home() {
               <div className="absolute left-1/2 top-1/2 hidden h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#22e7ff]/[0.06] blur-[60px] md:block" />
               <div className="absolute left-1/2 top-1/2 h-[180px] w-[180px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#22e7ff]/[0.08] blur-[50px] md:hidden" />
               <Image
-                src="/hero-bottle.png"
+                src="/foto_sem_fundo.png"
                 alt="NeuroDrive premium supplement bottle"
-                width={520}
-                height={520}
-                className="relative w-44 max-w-md drop-shadow-2xl sm:w-56 md:w-full"
+                width={780}
+                height={780}
+                className="relative w-[264px] max-w-[150%] drop-shadow-2xl sm:w-[336px] md:w-full"
                 priority
               />
             </div>
