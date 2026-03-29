@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import { trackEvent } from "@/lib/analytics";
+
 const SHOW_AFTER_SCROLL_Y = 400;
 
 export default function MobileStickyCTA() {
@@ -27,6 +29,13 @@ export default function MobileStickyCTA() {
     >
       <Link
         href="/questionario"
+        onClick={() =>
+          trackEvent("cta_click", {
+            cta_name: "mobile_sticky_questionario",
+            destination: "/questionario",
+            page_name: "home",
+          })
+        }
         className="flex w-full items-center justify-center rounded-full bg-[#00d6ff] px-5 py-3 text-sm font-semibold text-[#04111c]"
       >
         Iniciar Mapeamento

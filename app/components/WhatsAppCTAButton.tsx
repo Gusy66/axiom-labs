@@ -1,5 +1,7 @@
 "use client";
 
+import { trackEvent } from "@/lib/analytics";
+
 const WHATSAPP_URL =
   "https://wa.me/5511999999999?text=Olá!%20Quero%20ajuda%20para%20escolher%20meu%20protocolo%20NeuroDrive.";
 
@@ -9,6 +11,13 @@ export default function WhatsAppCTAButton() {
       href={WHATSAPP_URL}
       target="_blank"
       rel="noreferrer"
+      onClick={() =>
+        trackEvent("contact_click", {
+          contact_type: "whatsapp",
+          destination: WHATSAPP_URL,
+          page_name: "home",
+        })
+      }
       aria-label="Falar no WhatsApp"
       className="fixed bottom-24 right-4 z-50 inline-flex h-12 w-12 items-center justify-center rounded-full border border-[#6dffd4]/65 bg-[#0c1f25]/95 text-[#7fffe2] shadow-[0_0_20px_rgba(67,255,202,0.28)] transition hover:scale-105 hover:brightness-110 md:bottom-6 md:right-6"
     >

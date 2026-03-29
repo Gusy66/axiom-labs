@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 
+import { trackEvent } from "@/lib/analytics";
+
 function GoogleIcon() {
   return <span className="text-base">G</span>;
 }
@@ -48,6 +50,13 @@ export default function AuthPage() {
     }
   }, [callbackUrl, router, status]);
 
+  useEffect(() => {
+    trackEvent("auth_view", {
+      mode: modo,
+      callback_url: callbackUrl,
+    });
+  }, [callbackUrl, modo]);
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setMensagem("");
@@ -62,6 +71,10 @@ export default function AuthPage() {
       return;
     }
 
+    trackEvent("auth_submit", {
+      mode: modo,
+      method: "credentials",
+    });
     setSubmetendo(true);
 
     try {
@@ -93,6 +106,10 @@ export default function AuthPage() {
   }
 
   async function handleOAuth(provider: "google" | "apple") {
+    trackEvent("auth_submit", {
+      mode: modo,
+      method: provider,
+    });
     await signIn(provider, { redirectTo: callbackUrl });
   }
 
@@ -208,9 +225,14 @@ export default function AuthPage() {
 
         <button
           type="button"
-          onClick={() =>
-            setModo((atual) => (atual === "login" ? "cadastro" : "login"))
-          }
+          onClick={() => {
+            const nextMode = modo === "login" ? "cadastro" : "login";
+            trackEvent("auth_mode_switch", {
+              from_mode: modo,
+              to_mode: nextMode,
+            });
+            setModo(nextMode);
+          }}
           className="mt-5 text-sm text-white/65 hover:text-[#8cefff] hover:underline"
         >
           {modo === "login"

@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+
+import { trackEvent } from "@/lib/analytics";
 
 type Stage = "questions" | "lead" | "loading" | "result" | "blocked";
 
@@ -240,6 +242,8 @@ export default function QuestionarioPage() {
   const [mensagemLoading, setMensagemLoading] = useState(mensagensLoading[0]);
   const [persistindo, setPersistindo] = useState(false);
   const [erroPersistencia, setErroPersistencia] = useState("");
+  const trackedStagesRef = useRef<Set<string>>(new Set());
+  const trackedQuestionStepsRef = useRef<Set<number>>(new Set());
 
   const perguntaAtual = perguntas[indicePergunta];
   const selecionadas = respostas[perguntaAtual?.id] ?? [];
@@ -266,6 +270,49 @@ export default function QuestionarioPage() {
       clearInterval(interval);
       clearTimeout(timeout);
     };
+  }, [stage]);
+
+  useEffect(() => {
+    if (stage !== "questions") {
+      return;
+    }
+
+    const stepNumber = indicePergunta + 1;
+    if (trackedQuestionStepsRef.current.has(stepNumber)) {
+      return;
+    }
+
+    trackedQuestionStepsRef.current.add(stepNumber);
+    trackEvent(stepNumber === 1 ? "questionnaire_started" : "questionnaire_step_view", {
+      step_number: stepNumber,
+      total_steps: perguntas.length,
+    });
+  }, [indicePergunta, stage]);
+
+  useEffect(() => {
+    if (trackedStagesRef.current.has(stage)) {
+      return;
+    }
+
+    if (stage === "lead") {
+      trackEvent("lead_form_view", {
+        origin: "questionario",
+      });
+    }
+
+    if (stage === "result") {
+      trackEvent("questionnaire_result_view", {
+        origin: "questionario",
+      });
+    }
+
+    if (stage === "blocked") {
+      trackEvent("questionnaire_blocked", {
+        origin: "questionario",
+      });
+    }
+
+    trackedStagesRef.current.add(stage);
   }, [stage]);
 
   function toggleOpcao(opcaoId: string) {
@@ -302,15 +349,27 @@ export default function QuestionarioPage() {
     const respostaCritica =
       perguntaAtual.id === "experiencia_previa" && selecionadas.includes("tarja_preta");
     if (respostaCritica) {
+      trackEvent("questionnaire_ended", {
+        outcome: "blocked",
+        step_number: indicePergunta + 1,
+      });
       setStage("blocked");
       return;
     }
 
     if (indicePergunta === perguntas.length - 1) {
+      trackEvent("questionnaire_step_completed", {
+        step_number: indicePergunta + 1,
+        total_steps: perguntas.length,
+      });
       setStage("lead");
       return;
     }
 
+    trackEvent("questionnaire_step_completed", {
+      step_number: indicePergunta + 1,
+      total_steps: perguntas.length,
+    });
     setIndicePergunta((atual) => atual + 1);
   }
 
@@ -340,6 +399,9 @@ export default function QuestionarioPage() {
       return;
     }
 
+    trackEvent("lead_form_submit", {
+      origin: "questionario",
+    });
     setStage("loading");
   }
 
@@ -364,6 +426,9 @@ export default function QuestionarioPage() {
       });
 
       if (!response.ok) {
+        trackEvent("questionnaire_checkout_error", {
+          destination: "cadastro",
+        });
         setErroPersistencia("Não foi possível salvar seu resultado agora. Tente novamente.");
         return;
       }
@@ -378,12 +443,23 @@ export default function QuestionarioPage() {
             }
           | null;
         if (sessao?.user?.id) {
+          trackEvent("questionnaire_checkout_intent", {
+            destination: "/conta",
+            auth_state: "authenticated",
+          });
           router.replace("/conta");
           return;
         }
       }
+      trackEvent("questionnaire_checkout_intent", {
+        destination: "/auth?callbackUrl=%2Fconta&mode=cadastro",
+        auth_state: "anonymous",
+      });
       router.replace("/auth?callbackUrl=%2Fconta&mode=cadastro");
     } catch {
+      trackEvent("questionnaire_checkout_error", {
+        destination: "cadastro",
+      });
       setErroPersistencia("Não foi possível salvar seu resultado agora. Tente novamente.");
     } finally {
       setPersistindo(false);

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import MobileStickyCTA from "@/app/components/MobileStickyCTA";
 import WhatsAppCTAButton from "@/app/components/WhatsAppCTAButton";
+import { trackEvent } from "@/lib/analytics";
 
 const navItems = [
   { label: "Protocolo", href: "#protocol" },
@@ -290,6 +291,34 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const sections = Array.from(document.querySelectorAll<HTMLElement>("section[id]"));
+    if (!sections.length) return;
+
+    const trackedSections = new Set<string>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          const sectionId = entry.target.getAttribute("id");
+          if (!sectionId || trackedSections.has(sectionId)) return;
+
+          trackedSections.add(sectionId);
+          trackEvent("section_view", {
+            section_name: sectionId,
+            page_name: "home",
+          });
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.35 },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <main className="min-h-screen bg-[#06090f] pb-24 text-[#eaf2ff] md:pb-0">
       <header
@@ -316,6 +345,13 @@ export default function Home() {
               <a
                 key={item.label}
                 href={item.href}
+                onClick={() =>
+                  trackEvent("navigation_click", {
+                    nav_label: item.label,
+                    destination: item.href,
+                    page_name: "home",
+                  })
+                }
                 className="group relative text-sm text-white/60 transition hover:text-white"
               >
                 {item.label}
@@ -327,12 +363,26 @@ export default function Home() {
           <div className="hidden items-center gap-3 md:flex">
             <Link
               href="/auth?mode=login"
+              onClick={() =>
+                trackEvent("cta_click", {
+                  cta_name: "entrar_header",
+                  destination: "/auth?mode=login",
+                  page_name: "home",
+                })
+              }
               className="rounded-xl border border-white/12 bg-white/[0.03] px-4 py-2.5 text-sm font-semibold text-white/82 transition hover:border-[#22e7ff]/45 hover:text-[#22e7ff]"
             >
               Entrar
             </Link>
             <Link
               href="/auth?mode=cadastro"
+              onClick={() =>
+                trackEvent("cta_click", {
+                  cta_name: "criar_conta_header",
+                  destination: "/auth?mode=cadastro",
+                  page_name: "home",
+                })
+              }
               className="rounded-xl bg-[#13dff8] px-5 py-2.5 text-sm font-semibold text-[#021318] transition hover:brightness-110"
             >
               Criar conta
@@ -341,7 +391,14 @@ export default function Home() {
 
           <button
             type="button"
-            onClick={() => setMenuOpen((value) => !value)}
+            onClick={() => {
+              const nextState = !menuOpen;
+              setMenuOpen(nextState);
+              trackEvent("mobile_menu_toggle", {
+                state: nextState ? "open" : "close",
+                page_name: "home",
+              });
+            }}
             className="text-white md:hidden"
             aria-label="Alternar menu"
           >
@@ -360,7 +417,14 @@ export default function Home() {
                 key={item.label}
                 href={item.href}
                 className="block py-2 text-sm text-white/70"
-                onClick={() => setMenuOpen(false)}
+                onClick={() => {
+                  setMenuOpen(false);
+                  trackEvent("navigation_click", {
+                    nav_label: item.label,
+                    destination: item.href,
+                    page_name: "home_mobile_menu",
+                  });
+                }}
               >
                 {item.label}
               </a>
@@ -369,14 +433,28 @@ export default function Home() {
               <Link
                 href="/auth?mode=login"
                 className="block rounded-lg border border-white/12 bg-white/[0.03] px-5 py-2.5 text-center text-sm font-semibold text-white/82"
-                onClick={() => setMenuOpen(false)}
+                onClick={() => {
+                  setMenuOpen(false);
+                  trackEvent("cta_click", {
+                    cta_name: "entrar_mobile_menu",
+                    destination: "/auth?mode=login",
+                    page_name: "home",
+                  });
+                }}
               >
                 Entrar
               </Link>
               <Link
                 href="/auth?mode=cadastro"
                 className="block rounded-lg bg-[#13dff8] px-5 py-2.5 text-center text-sm font-semibold text-[#021318]"
-                onClick={() => setMenuOpen(false)}
+                onClick={() => {
+                  setMenuOpen(false);
+                  trackEvent("cta_click", {
+                    cta_name: "criar_conta_mobile_menu",
+                    destination: "/auth?mode=cadastro",
+                    page_name: "home",
+                  });
+                }}
               >
                 Criar conta
               </Link>
@@ -419,6 +497,13 @@ export default function Home() {
 
               <Link
                 href="/questionario"
+                onClick={() =>
+                  trackEvent("cta_click", {
+                    cta_name: "hero_questionario_mobile",
+                    destination: "/questionario",
+                    page_name: "home",
+                  })
+                }
                 className="mt-8 inline-flex w-[88%] items-center justify-center rounded-full bg-[linear-gradient(90deg,#5687ff_0%,#3f71ff_55%,#4f7eff_100%)] px-8 py-4 text-center text-base font-semibold text-white shadow-[0_12px_30px_rgba(74,117,255,0.48)] transition hover:brightness-110"
               >
                 Iniciar Mapeamento Cognitivo
@@ -462,6 +547,13 @@ export default function Home() {
             <div className="pt-1 md:pt-2">
               <Link
                 href="/questionario"
+                onClick={() =>
+                  trackEvent("cta_click", {
+                    cta_name: "hero_questionario_desktop",
+                    destination: "/questionario",
+                    page_name: "home",
+                  })
+                }
                 className="inline-flex w-full rounded-xl bg-[#13dff8] px-7 py-3.5 text-center text-sm font-semibold text-[#021318] transition hover:brightness-110 sm:w-auto sm:px-8 md:py-4 md:text-base"
               >
                 Iniciar Mapeamento Cognitivo
@@ -645,6 +737,13 @@ export default function Home() {
                 <div className="pt-1">
                   <Link
                     href="/questionario"
+                    onClick={() =>
+                      trackEvent("cta_click", {
+                        cta_name: "product_questionario",
+                        destination: "/questionario",
+                        page_name: "home",
+                      })
+                    }
                     className="block rounded-lg bg-[#13dff8] px-5 py-3.5 text-center text-sm font-semibold text-[#021318] transition hover:brightness-110 md:inline-block md:min-w-[260px]"
                   >
                     Ver protocolo completo
@@ -721,6 +820,13 @@ export default function Home() {
           </div>
           <a
             href="mailto:suporte@neurodrive.com.br"
+            onClick={() =>
+              trackEvent("contact_click", {
+                contact_type: "email",
+                destination: "mailto:suporte@neurodrive.com.br",
+                page_name: "home",
+              })
+            }
             className="font-mono-data text-sm text-white/45 transition hover:text-[#22e7ff]"
           >
             suporte@neurodrive.com.br
