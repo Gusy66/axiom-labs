@@ -138,7 +138,7 @@ const testimonials = [
   },
   {
     quote:
-      "O diferencial da Axiom é o rigor. Não é um suplemento de prateleira, é um protocolo prescrito que realmente entrega o soco de produtividade que eu precisava.",
+      "O diferencial da NeuroDrive é o rigor. Não é um suplemento de prateleira, é um protocolo prescrito que realmente entrega o soco de produtividade que eu precisava.",
     before: "Testei 12 nootrópicos. Nenhum durou.",
     after: "6 meses com NeuroDrive. Performance consistente.",
     name: "Marcelo F.",
